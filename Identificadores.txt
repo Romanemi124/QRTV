@@ -1,0 +1,43 @@
+MainViewController
+    Id
+    - btnMostrarViewRegistro
+    - btnMostrarViewLogin
+
+    Acciones
+    - showViewRegistro
+    - showViewLogin
+
+RegistroViewController
+    Id
+    - btnMostrarViewLogin2
+    - btnMostrarViewPrincipal
+
+    Acciones
+    - showViewLogin
+    - showViewPrincipal
+
+LoginViewController
+    Id
+    - btnMostrarViewRegistro2  //Falta por implementar
+    - btnMostrarViewPrincipal2
+
+    Acciones
+    - showViewRegistro2  //Falta por implementar
+    - showViewPrincipal2
+
+ContenidoViewController
+    Id
+    - mediaView
+    - btnPlay
+    - btnPause
+    - btnReset
+    - txtTitulo
+    - txtDuration
+    - imgActor1, imgActor2, imgActor3, imgActor4
+    - txtSinopsis
+    - btnMenu
+
+    Acciones
+    - playVideo
+    - pauseVideo
+    - resetVideo

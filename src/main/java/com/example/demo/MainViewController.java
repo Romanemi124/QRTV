@@ -3,31 +3,44 @@ package com.example.demo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class MainViewController {
 
-    private Stage stage1;
+    @FXML
+    private Button btnMostrarViewLogin;
 
     @FXML
     private Button btnMostrarViewRegistro;
 
+    HelloApplication main = new HelloApplication();
+
+    //Dirección de las diferentes vistas que se podrán usar
+    FXMLLoader loaderLogin = new FXMLLoader(getClass().getResource("loginView.fxml"));
+    FXMLLoader loaderRegistro = new FXMLLoader(getClass().getResource("registroView.fxml"));
+
     @FXML
-    void showViewRegistro(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("registroView.fxml"));
-        Parent root = loader.load();
-        RegistroViewController controller = loader.getController();
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setScene(scene);
+    void showViewLogin(ActionEvent event) {
+        try {
+            /* creamos objeto del Main para poder llamar al metodo start2 */
+            main.cerrarPagina(event, btnMostrarViewLogin);
+            main.mostrarPagina(event, loaderLogin);
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public void setStage(Stage stage) {
-        stage1 = stage;
+    @FXML
+    void showViewRegistro(ActionEvent event) {
+        try {
+            /* creamos objeto del Main para poder llamar al metodo start2 */
+            main.cerrarPagina(event, btnMostrarViewRegistro);
+            main.mostrarPagina(event, loaderRegistro);
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
+
 }

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="732.0" prefWidth="1170.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.MainViewController">
    <children>
@@ -12,6 +14,17 @@
             <Image url="@pics/fondoMain.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnMostrarViewRegistro" layoutX="132.0" layoutY="463.0" mnemonicParsing="false" onAction="#showViewRegistro" prefHeight="57.0" prefWidth="158.0" text="Button" />
+      <Label layoutX="127.0" layoutY="447.0" prefHeight="89.0" prefWidth="165.0" text="SIGN UP" textFill="WHITE">
+         <font>
+            <Font size="44.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnMostrarViewRegistro" layoutX="125.0" layoutY="463.0" mnemonicParsing="false" onAction="#showViewRegistro" opacity="0.0" prefHeight="57.0" prefWidth="165.0" text="Button" />
+      <Label layoutX="129.0" layoutY="407.0" prefHeight="47.0" prefWidth="106.0" text="LOG IN" textFill="WHITE">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnMostrarViewLogin" layoutX="129.0" layoutY="414.0" mnemonicParsing="false" onAction="#showViewLogin" opacity="0.0" prefHeight="33.0" prefWidth="124.0" text="Button" />
    </children>
 </AnchorPane>
