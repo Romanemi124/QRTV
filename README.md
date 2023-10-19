@@ -23,7 +23,3 @@ QR TV+ es una nueva plataforma que permite a los usuarios ver contenido multimed
 
 ### Vista principal de la aplicación al iniciar sesión
 ![4 1-home](https://github.com/Romanemi124/QRTV/assets/102904774/2234ecb8-18a9-4dc3-b30d-538eeb0274a0)
-
-
-> [Características]
-> Prototipo de interfaz acerca de una aplicación de streaming
