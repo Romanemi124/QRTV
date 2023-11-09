@@ -33,7 +33,7 @@ public class ContenidoViewController implements Initializable {
         media = new Media(file.toURI().toString());
         mediaPlayer = new MediaPlayer(media);
         mediaView.setMediaPlayer(mediaPlayer);
-        /* Botones de relleno */
+        // Botones de relleno
         //mediaPlayer.play();
     }
 

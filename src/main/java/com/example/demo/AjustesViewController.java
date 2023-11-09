@@ -2,109 +2,57 @@ package com.example.demo;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
-public class AjustesViewController {
-
-    @FXML
-    private Button btnPrueba, btnMostrarViewHome, btnMostrarViewPeliculas, btnMostrarViewSeries;
-
-    @FXML
-    private Button btnMostrarViewBiblioteca, btnMostrarViewBuscador, btnMostrarViewAjustes;
-
-    HelloApplication main = new HelloApplication();
-
-    //Dirección de las diferentes vistas que se podrán usar
-    FXMLLoader loaderContenido = new FXMLLoader(getClass().getResource("contenidoView.fxml"));
-    FXMLLoader loaderHome = new FXMLLoader(getClass().getResource("principalView.fxml"));
-    FXMLLoader loaderPeliculas = new FXMLLoader(getClass().getResource("peliculasView.fxml"));
-    FXMLLoader loaderSeries = new FXMLLoader(getClass().getResource("seriesView.fxml"));
-    FXMLLoader loaderBiblioteca = new FXMLLoader(getClass().getResource("bibliotecaView.fxml"));
-    FXMLLoader loaderBuscador = new FXMLLoader(getClass().getResource("buscadorView.fxml"));
-    FXMLLoader loaderAjustes = new FXMLLoader(getClass().getResource("ajustesView.fxml"));
+public class AjustesViewController extends NavegacionVistas {
 
     @FXML
-    void mostrarVideo(ActionEvent event) {
-        try {
-            /* creamos objeto del Main para poder llamar al metodo start2 */
-            main.cerrarPagina(event, btnPrueba);
-            main.mostrarPagina(event, loaderContenido);
+    private TextField txtId, txtName, txtSurname, txtBirth, txtGender, txtMail, txtPassword;
 
-        } catch(Exception e) {
-            e.printStackTrace();
+    @FXML
+    private Label txtError;
+
+    @FXML
+    private Button btnCerrarSesion;
+
+
+    // Recoge el id del usuario que inicia sesión en todas las vistas
+    void mostrarId(int id) {
+
+        txtId.setText(String.valueOf(id));
+        idUsuario = Integer.parseInt(txtId.getText());
+        System.out.println("el valor recogido es : " + idUsuario);
+
+        // Al iniciar la vista cargamos los datos del usuario que ha iniciado sesión
+        baseDatos.mostrarUsuario(idUsuario, txtName, txtSurname, txtBirth, txtGender, txtMail, txtPassword);
+    }
+
+    @FXML
+    void updateDatos(ActionEvent event) {
+
+        if (!txtName.getText().isEmpty() && !txtSurname.getText().isEmpty() && !txtBirth.getText().isEmpty() && !txtGender.getText().isEmpty() && !txtMail.getText().isEmpty() && !txtPassword.getText().isEmpty()) {
+
+            baseDatos.modificarUsuario(idUsuario, txtName, txtSurname, txtBirth, txtGender, txtMail, txtPassword, txtError);
+
+        } else {
+            txtError.setText("Faltan datos");
         }
     }
 
     @FXML
-    void showViewAjustes(ActionEvent event) {
+    void cerrarSesion(ActionEvent event) {
+
         try {
-            /* creamos objeto del Main para poder llamar al metodo start2 */
-            main.cerrarPagina(event, btnMostrarViewAjustes);
-            main.mostrarPagina(event, loaderAjustes);
 
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    void showViewBiblioteca(ActionEvent event) {
-        try {
-            /* creamos objeto del Main para poder llamar al metodo start2 */
-            main.cerrarPagina(event, btnMostrarViewBiblioteca);
-            main.mostrarPagina(event, loaderBiblioteca);
-
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    void showViewBuscador(ActionEvent event) {
-        try {
-            /* creamos objeto del Main para poder llamar al metodo start2 */
-            main.cerrarPagina(event, btnMostrarViewBuscador);
-            main.mostrarPagina(event, loaderBuscador);
-
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    void showViewHome(ActionEvent event) {
-        try {
-            /* creamos objeto del Main para poder llamar al metodo start2 */
-            main.cerrarPagina(event, btnMostrarViewHome);
-            main.mostrarPagina(event, loaderHome);
-
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    void showViewPeliculas(ActionEvent event) {
-        try {
-            /* creamos objeto del Main para poder llamar al metodo start2 */
-            main.cerrarPagina(event, btnMostrarViewPeliculas);
-            main.mostrarPagina(event, loaderPeliculas);
-
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    void showViewSeries(ActionEvent event) {
-        try {
-            /* creamos objeto del Main para poder llamar al metodo start2 */
-            main.cerrarPagina(event, btnMostrarViewSeries);
-            main.mostrarPagina(event, loaderSeries);
+            // En caso de no tener cuenta nos dirige a la vista registro
+            main.cerrarPagina(event, btnCerrarSesion);
+            main.mostrarPagina(event, loaderMain);
 
         } catch(Exception e) {
             e.printStackTrace();
         }
     }
 }
+

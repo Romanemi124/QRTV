@@ -16,6 +16,7 @@ public class HelloApplication extends Application {
     public void start(Stage primaryStage) {
 
         Parent root;
+
         try {
 
             //Guardamos la dirección de la vista principal del main
@@ -51,14 +52,14 @@ public class HelloApplication extends Application {
         }
     }
 
-    /* Para comprobar el personaje obtenido */
+    // Para comprobar el personaje obtenido
     @FXML
     public void cerrarPagina(ActionEvent event, Button btnEmpezar) {
 
         try {
-            /* selecciona la vista a la que pertenece btn1 */
+            // selecciona la vista a la que pertenece btn1
             Stage stage = (Stage) btnEmpezar.getScene().getWindow();
-            /* haciendo .hide cierra la ventana con la opción de reabrir la vista */
+            // haciendo .hide cierra la ventana con la opción de reabrir la vista
             stage.hide();
 
         } catch(Exception e) {
