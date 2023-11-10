@@ -29,11 +29,12 @@ public class LoginViewController {
 
     FXMLLoader loaderPrincipal = new FXMLLoader(getClass().getResource("principalView.fxml"));
     FXMLLoader loaderRegistro = new FXMLLoader(getClass().getResource("registroView.fxml"));
+    FXMLLoader loaderAdminLogin = new FXMLLoader(getClass().getResource("loginAdminView.fxml"));
 
     @FXML
     void btnMostrarViewPrincipal2(ActionEvent event) {
 
-        boolean encontrado = false;
+        int encontrado = 0;
 
         try {
 
@@ -42,18 +43,31 @@ public class LoginViewController {
 
                 encontrado = baseDatos.iniciarSesion(titMail, titPassword, txtError, idUser);
 
-                // En el caso de que encuentre el usuario se pasará a la siguiente vista
-                if (encontrado == true) {
+                switch (encontrado) {
+                    case 1:
 
-                    // Guardamos el id del usuario para navegabilidad entre ventanas
-                    idUser = baseDatos.getIdUser(titMail, titPassword);
-                    System.out.println("holaaa" + idUser);
-                    // Mostramos la pantalla principal una vez comprobamos en la bd
-                    main.cerrarPagina(event, btnMostrarViewPrincipal2);
-                    mostrarPrincipalViewUser(event, loaderPrincipal, idUser);
+                        // Guardamos el id del usuario para navegabilidad entre ventanas
+                        idUser = baseDatos.getIdUser(titMail, titPassword);
+                        System.out.println("Hola user : " + idUser);
 
-                } else {
-                    txtError.setText("Usuario no encontrado");
+                        // Mostramos la pantalla principal una vez comprobamos en la bd
+                        main.cerrarPagina(event, btnMostrarViewPrincipal2);
+                        mostrarPrincipalViewUser(event, loaderPrincipal, idUser);
+
+                        break;
+                    case 2:
+                        // Guardamos el id del usuario para navegabilidad entre ventanas
+                        idUser = baseDatos.getIdUser(titMail, titPassword);
+                        System.out.println("Hola admin : " + idUser);
+
+                        // Mostramos la pantalla principal una vez comprobamos en la bd
+                        main.cerrarPagina(event, btnMostrarViewPrincipal2);
+                        mostrarViewLoginAdmin(event, loaderAdminLogin, idUser);
+
+                        break;
+                    default:
+                        txtError.setText("Usuario no encontrado");
+                        break;
                 }
 
             } else {
@@ -77,6 +91,28 @@ public class LoginViewController {
             pview.mostrarId(idUser);
 
             System.out.println("Usuario en vista login : " + idUser);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));
+            stage.show();
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void mostrarViewLoginAdmin(ActionEvent event, FXMLLoader fxmlLoader, int idUser) {
+
+        try {
+
+            Parent root1 = (Parent) fxmlLoader.load();
+            // Para pasar datos entre ventanas
+            LoginAdminViewController pview = fxmlLoader.getController();
+            //idUser = pview.mostrarId(idUser);
+            pview.mostrarId(idUser);
+
+            System.out.println("Usuario en vista login Admin : " + idUser);
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));

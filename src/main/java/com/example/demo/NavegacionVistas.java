@@ -37,6 +37,8 @@ public class NavegacionVistas {
     FXMLLoader loaderLogin = new FXMLLoader(getClass().getResource("loginView.fxml"));
     FXMLLoader loaderSeries = new FXMLLoader(getClass().getResource("seriesView.fxml"));
 
+    FXMLLoader loaderAdminControl = new FXMLLoader(getClass().getResource("controlAdminView.fxml"));
+
     //------------------------------------------------------------------------
     // Accion button mostrar pantalla principal
     @FXML

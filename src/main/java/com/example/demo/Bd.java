@@ -55,9 +55,9 @@ public class Bd {
 	//----------------------------------------------------------------------------------------------------------
 	// MÉTODOS USADOS PARA LA ADMINISTRACIÓN DEL USUARIO
 
-	public boolean iniciarSesion(TextField email, TextField password, Label txtError, int idUser) {
+	public int iniciarSesion(TextField email, TextField password, Label txtError, int idUser) {
 
-		boolean encontrado = false;
+		int encontrado = 0;
 
 		ResultSet result;
 		String sql;
@@ -71,13 +71,61 @@ public class Bd {
 			sentenciaSQL = conexion.createStatement();
 
 			// Sentencia para añadir usuarios a la tabla
-			sql = "SELECT userMail, userPassword FROM Usuarios where userMail = '" + emailAux + "' and userPassword = '" + passwordAux + "'";
+			sql = "SELECT userMail, userPassword, isAdmin FROM Usuarios where userMail = '" + emailAux + "' and userPassword = '" + passwordAux + "'";
 			result = sentenciaSQL.executeQuery(sql);
 
 			// Siempre se ejecuta cada vez que encuentre un dato buscado en la secuencia
 			if(result.next()) {
-				System.out.println("User found");
+
+				// Mostramos el id del usuario para comprobar funcionamiento
+				System.out.println("Admin? : " + result.getString("isAdmin"));
+
+				// Solo lo dará como encontrado en el caso de un usuario normal
+				if (result.getString("isAdmin") == null) {
+					System.out.println("User found");
+					encontrado = 1;
+				} else {
+
+					// En caso de que sea admin
+					encontrado = 2;
+				}
+			}
+
+			desconectar();
+
+		} catch (SQLException ex) {
+			System.out.println("ERROR at login");
+			txtError.setText("User or password incorrect");
+		}
+
+		return encontrado;
+	}
+
+	// Acceder al panel de control del admin
+	public boolean iniciarSesionAdmin(TextField code, Label txtError, int idUser) {
+
+		boolean encontrado = false;
+
+		ResultSet result;
+		String sql;
+
+		String codeAux = code.getText();
+
+		try {
+
+			conectar();
+			sentenciaSQL = conexion.createStatement();
+
+			// Sentencia para añadir usuarios a la tabla
+			sql = "SELECT isAdmin FROM Usuarios where idUsuarios = '" + idUser + "' and isAdmin = '" + codeAux + "'";
+			result = sentenciaSQL.executeQuery(sql);
+
+			// Siempre se ejecuta cada vez que encuentre un dato buscado en la secuencia
+			if(result.next()) {
+
+				// En caso de coincidir datos devuelve el encontrado
 				encontrado = true;
+				System.out.println("Admin control? : " + encontrado);
 			}
 
 			desconectar();

@@ -47,7 +47,7 @@
                   <Font size="28.0" />
                </font>
             </Text>
-            <TextField fx:id="titDate" nodeOrientation="RIGHT_TO_LEFT" prefHeight="23.0" prefWidth="371.0" promptText="YYYY-DD-MM">
+            <TextField fx:id="titDate" nodeOrientation="RIGHT_TO_LEFT" prefHeight="23.0" prefWidth="371.0" promptText="YYYY-MM-DD">
                <VBox.margin>
                   <Insets bottom="25.0" />
                </VBox.margin>
