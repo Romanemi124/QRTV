@@ -33,7 +33,7 @@ public class Bd {
 			
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			conexion = DriverManager.getConnection("jdbc:mysql://localhost/QR_TV",
-			"root", "Geronimo20");
+			"root", "Papaya.1");
 		    
 		} catch (ClassNotFoundException cn) {
 			cn.printStackTrace();
