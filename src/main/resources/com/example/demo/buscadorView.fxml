@@ -8,12 +8,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="732.0" prefWidth="1170.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.BuscadorViewController">
    <children>
       <ImageView fitHeight="732.0" fitWidth="1185.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@pics/fondoPrincipal.png" />
+            <Image url="@pics/fondoBuscador.jpeg" />
          </image>
       </ImageView>
       <Label layoutX="41.0" layoutY="10.0" prefHeight="90.0" prefWidth="152.0" text="QR TV+" textFill="WHITE">
@@ -28,12 +29,35 @@
          </font>
       </Label>
       <Button fx:id="btnMostrarViewHome" layoutX="284.0" layoutY="24.0" mnemonicParsing="false" onAction="#showViewHome" opacity="0.0" prefHeight="65.0" prefWidth="81.0" text="home" />
-      <Button fx:id="btnPrueba" layoutX="225.0" layoutY="585.0" mnemonicParsing="false" onAction="#mostrarVideo" prefHeight="55.0" prefWidth="151.0" text="Mirar video" />
       <Button fx:id="btnMostrarViewPeliculas" layoutX="375.0" layoutY="24.0" mnemonicParsing="false" onAction="#showViewPeliculas" opacity="0.0" prefHeight="65.0" prefWidth="90.0" text="peliculas" />
       <Button fx:id="btnMostrarViewSeries" layoutX="477.0" layoutY="24.0" mnemonicParsing="false" onAction="#showViewSeries" opacity="0.0" prefHeight="65.0" prefWidth="81.0" text="series" />
       <Button fx:id="btnMostrarViewBiblioteca" layoutX="569.0" layoutY="26.0" mnemonicParsing="false" onAction="#showViewBiblioteca" opacity="0.0" prefHeight="65.0" prefWidth="102.0" text="biblioteca" />
       <Button fx:id="btnMostrarViewBuscador" layoutX="685.0" layoutY="24.0" mnemonicParsing="false" onAction="#showViewBuscador" opacity="0.0" prefHeight="65.0" prefWidth="100.0" text="buscador" />
       <Button fx:id="btnMostrarViewAjustes" layoutX="786.0" layoutY="31.0" mnemonicParsing="false" onAction="#showViewAjustes" opacity="0.0" prefHeight="65.0" prefWidth="100.0" text="ajustes" />
       <TextField fx:id="txtId" layoutX="1120.0" layoutY="63.0" opacity="0.0" prefHeight="26.0" prefWidth="32.0" />
+      <TextField fx:id="txtBuscador" layoutX="215.0" layoutY="265.0" prefHeight="45.0" prefWidth="648.0" style="-fx-background-color: whitee; -fx-border-color: white; -fx-border-radius: 20; -fx-border-width: 2; -fx-text-fill: white;">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <Text fx:id="txtError" fill="WHITE" layoutX="223.0" layoutY="340.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="321.8865032596681">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </Text>
+      <Button fx:id="btnPortada1" ellipsisString="" layoutX="494.0" layoutY="420.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#mostrarBusqueda" prefHeight="113.0" prefWidth="200.0" style="-fx-background-color: null;" textAlignment="CENTER">
+         <graphic>
+            <ImageView fx:id="imgPort1" fitHeight="116.0" fitWidth="202.0" pickOnBounds="true" preserveRatio="true" />
+         </graphic>
+      </Button>
+      <Button fx:id="btnSearch" ellipsisString="" layoutX="879.0" layoutY="254.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#buscar" prefHeight="61.0" prefWidth="76.0" style="-fx-background-color: null;" textAlignment="CENTER">
+         <graphic>
+            <ImageView fitHeight="51.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@pics/icon/lupa.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>

@@ -7,13 +7,10 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Collections;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import java.util.ArrayList;
 
 public class Bd {
 	
@@ -30,17 +27,16 @@ public class Bd {
 	final void conectar() throws SQLException {
 		
         try {
-			
+
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			conexion = DriverManager.getConnection("jdbc:mysql://localhost/QR_TV",
-			"root", "Papaya.1");
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost/QR_TV", "root", "Geronimo20");
 		    
 		} catch (ClassNotFoundException cn) {
 			cn.printStackTrace();
 		}
 	}
 	
-	/* Desconectarse */
+	// Desconectarse
 	
 	final void desconectar() throws SQLException {
 		
@@ -297,18 +293,21 @@ public class Bd {
 	//----------------------------------------------------------------------------------------------------------
 	// MÉTODOS USADOS PARA EL HOME DE LA APLICACIÓN
 
-	public void getOnlyImage(int idContenido, ImageView img, String urlImagen) {
+	// Sólo sirve para la vista principal debido a que le pasamos los ids
+	public int getOnlyImage(int idContenido, ImageView img, String urlImagen) {
 
 		File file;
 		ResultSet result;
 		String sql;
+
+		int idCont = 0;
 
 		try {
 
 			conectar();
 			sentenciaSQL = conexion.createStatement();
 
-			sql = "SELECT " + urlImagen + " FROM Contenido WHERE idContenido = '" + idContenido + "'";
+			sql = "SELECT idContenido, " + urlImagen + " FROM Contenido WHERE idContenido = '" + idContenido + "'";
 			result = sentenciaSQL.executeQuery(sql);
 
 			if(result.next()) {
@@ -321,6 +320,8 @@ public class Bd {
 					img.setImage(image);
 					System.out.println(file);
 
+					idCont = result.getInt("idContenido");
+
 				} else if (urlImagen == "urlImagenPe") {
 
 					// Cuando recibimos el dato de la base de datos lo añadimos a la imagen
@@ -329,6 +330,7 @@ public class Bd {
 					img.setImage(image);
 					System.out.println(file);
 
+					idCont = result.getInt("idContenido");
 				}
 			}
 
@@ -337,6 +339,203 @@ public class Bd {
 		} catch (SQLException ex) {
 			System.out.println("ERROR al mostrar la imagen del home");
 		}
+
+		return idCont;
+	}
+	public void setOnlyImage(int idContenido, ImageView img) {
+
+		File file;
+		ResultSet result;
+		String sql;
+
+		int idCont = 0;
+
+		try {
+
+			conectar();
+			sentenciaSQL = conexion.createStatement();
+
+			sql = "SELECT idContenido, urlImagenPe FROM Contenido WHERE idContenido = '" + idContenido + "'";
+			result = sentenciaSQL.executeQuery(sql);
+
+			if(result.next()) {
+
+				// Cuando recibimos el dato de la base de datos lo añadimos a la imagen
+				file = new File(result.getString("urlImagenPe"));
+				Image image = new Image(file.toURI().toString());
+				img.setImage(image);
+				System.out.println(file);
+			}
+
+			desconectar();
+
+		} catch (SQLException ex) {
+			System.out.println("ERROR al mostrar la imagen por id array");
+		}
+	}
+
+	//----------------------------------------------------------------------------------------------------------
+	// FILTRADO
+
+	// Para mostrar las n películas en general
+	public ArrayList<Integer> getOnlyIds() {
+
+		ResultSet result;
+		String sql;
+
+		ArrayList<Integer> listIds = new ArrayList<>();
+		int idCont = 0;
+
+		try {
+
+			conectar();
+			sentenciaSQL = conexion.createStatement();
+
+			sql = "SELECT idContenido FROM Contenido LIMIT 25";
+			result = sentenciaSQL.executeQuery(sql);
+
+			while(result.next()) {
+
+				idCont = result.getInt("idContenido");
+				//System.out.println("Dato ID obtenido : " + idCont);
+				listIds.add(idCont);
+			}
+
+			desconectar();
+
+		} catch (SQLException ex) {
+			System.out.println("ERROR al guardar los ids de los contenidos");
+		}
+
+		return listIds;
+	}
+	public int getOnlyIdBuscador(TextField nombreCont) {
+
+		ResultSet result;
+		String sql;
+
+		String nombreAux = nombreCont.getText();
+
+		int idCont = 0;
+
+		try {
+
+			conectar();
+			sentenciaSQL = conexion.createStatement();
+
+			sql = "SELECT idContenido FROM Contenido WHERE nameCont = '" + nombreAux + "'";
+			result = sentenciaSQL.executeQuery(sql);
+
+			while(result.next()) {
+
+				idCont = result.getInt("idContenido");
+				//System.out.println("Dato ID obtenido : " + idCont);
+			}
+
+			desconectar();
+
+		} catch (SQLException ex) {
+			System.out.println("ERROR al guardar el id buscado");
+		}
+
+		return idCont;
+	}
+
+	// Para mostrar las n PELÍCULAS
+	public ArrayList<Integer> getOnlyIdsPeliculas() {
+
+		ResultSet result;
+		String sql;
+
+		ArrayList<Integer> listIds = new ArrayList<>();
+		int idCont = 0;
+
+		try {
+
+			conectar();
+			sentenciaSQL = conexion.createStatement();
+
+			sql = "SELECT idContenido FROM Contenido WHERE tipoCont = 'Pelicula' LIMIT 25";
+			result = sentenciaSQL.executeQuery(sql);
+
+			while(result.next()) {
+
+				idCont = result.getInt("idContenido");
+				//System.out.println("Dato ID obtenido : " + idCont);
+				listIds.add(idCont);
+			}
+
+			desconectar();
+
+		} catch (SQLException ex) {
+			System.out.println("ERROR al guardar los ids pelicula de los contenidos");
+		}
+
+		return listIds;
+	}
+	public ArrayList<Integer> getOnlyIdsGenero(String tipo, String genero) {
+
+		ResultSet result;
+		String sql;
+
+		ArrayList<Integer> listIds = new ArrayList<>();
+		int idCont = 0;
+
+		try {
+
+			conectar();
+			sentenciaSQL = conexion.createStatement();
+
+			sql = "SELECT idContenido FROM Contenido WHERE tipoCont = '" + tipo + "' AND generoCont = '" + genero + "' LIMIT 25";
+			result = sentenciaSQL.executeQuery(sql);
+
+			while(result.next()) {
+
+				idCont = result.getInt("idContenido");
+				//System.out.println("Dato ID obtenido : " + idCont);
+				listIds.add(idCont);
+			}
+
+			desconectar();
+
+		} catch (SQLException ex) {
+			System.out.println("ERROR al guardar los ids pelicula de los contenidos");
+		}
+
+		return listIds;
+	}
+
+	// Para mostrar las n SERIES
+	public ArrayList<Integer> getOnlyIdsSeries() {
+
+		ResultSet result;
+		String sql;
+
+		ArrayList<Integer> listIds = new ArrayList<>();
+		int idCont = 0;
+
+		try {
+
+			conectar();
+			sentenciaSQL = conexion.createStatement();
+
+			sql = "SELECT idContenido FROM Contenido WHERE tipoCont = 'Serie' LIMIT 25";
+			result = sentenciaSQL.executeQuery(sql);
+
+			while(result.next()) {
+
+				idCont = result.getInt("idContenido");
+				//System.out.println("Dato ID obtenido : " + idCont);
+				listIds.add(idCont);
+			}
+
+			desconectar();
+
+		} catch (SQLException ex) {
+			System.out.println("ERROR al guardar los ids pelicula de los contenidos");
+		}
+
+		return listIds;
 	}
 
 	public void getDatosImage(int idContenido, Label txtTitulo, Label txtDuracion) {
@@ -364,6 +563,47 @@ public class Bd {
 		} catch (SQLException ex) {
 			System.out.println("ERROR al mostrar datos de la imagen del home");
 		}
+	}
+	// Para la vista contenido individual
+	public String getDatosImageCompl(int idContenido, Label txtTitulo, Label txtValoracion, Label txtYear, Label txtDuracion, Label txtSinopsis) {
+
+		ResultSet result;
+		String sql;
+		String urlVideo = "";
+
+		try {
+
+			conectar();
+			sentenciaSQL = conexion.createStatement();
+
+			sql = "SELECT * FROM Contenido WHERE idContenido = '" + idContenido + "'";
+			result = sentenciaSQL.executeQuery(sql);
+
+			System.out.println("El id del contenido en la bd es : " + idContenido);
+
+			if(result.next()) {
+
+				// Insertamos los datos obtenidos en los textos de la vista
+				txtTitulo.setText(result.getString("generoCont") + " : " + result.getString("nameCont")  + " / " + result.getString("yearCont"));
+				txtValoracion.setText("Rate : " + result.getString("valoracionCont"));
+				//txtYear.setText(result.getString("yearCont"));
+				txtDuracion.setText(result.getString("duracionCont"));
+				txtSinopsis.setText(result.getString("sinopsisCont"));
+
+				System.out.println("Dato titulo prueba : " + result.getString("generoCont"));
+
+				// Obtenemos el link del video
+				urlVideo = result.getString("urlVideo");
+				System.out.println("url video bd : " + result.getString("urlVideo"));
+			}
+
+			desconectar();
+
+		} catch (SQLException ex) {
+			System.out.println("ERROR al mostrar datos de la imagen del home");
+		}
+
+		return urlVideo;
 	}
 
 }

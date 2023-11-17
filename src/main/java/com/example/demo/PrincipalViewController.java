@@ -9,17 +9,25 @@ import javafx.scene.control.Label;
 import java.net.URL;
 import javafx.scene.Node;
 import javafx.util.Duration;
-
+import javafx.scene.control.Button;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class PrincipalViewController extends NavegacionVistas implements Initializable {
 
     int show = 0;
+
+    int idAux = 0;
+    ArrayList<Integer> ids = new ArrayList<>();
+
     @FXML
     private ImageView img1,img2, img3, img4, imgPort1, imgPort2, imgPort3, imgPort4, imgPort5;
 
     @FXML
     private Label txtTitulo, txtDuracion;
+
+    @FXML
+    private Button btnPortada1, btnPortada2, btnPortada3, btnPortada4, btnPortada5;
 
     // Recoge el id del usuario que inicia sesión en todas las vistas
     void mostrarId(int id) {
@@ -39,17 +47,31 @@ public class PrincipalViewController extends NavegacionVistas implements Initial
     public void initialize(URL location, ResourceBundle resources) {
 
         // Insertamos las imágenes desde la base de datos para el slider
-        baseDatos.getOnlyImage(1, img1, "urlImagen");
-        baseDatos.getOnlyImage(2, img2, "urlImagen");
-        baseDatos.getOnlyImage(3, img3, "urlImagen");
-        baseDatos.getOnlyImage(4, img4, "urlImagen");
+        idAux = baseDatos.getOnlyImage(1, img1, "urlImagen");
+        ids.add(idAux);
+        idAux = baseDatos.getOnlyImage(2, img2, "urlImagen");
+        ids.add(idAux);
+        idAux = baseDatos.getOnlyImage(3, img3, "urlImagen");
+        ids.add(idAux);
+        idAux = baseDatos.getOnlyImage(4, img4, "urlImagen");
+        ids.add(idAux);
 
         // Insertamos las imágenes desde la base de datos para las pequeñas
-        baseDatos.getOnlyImage(5, imgPort1, "urlImagenPe");
-        baseDatos.getOnlyImage(6, imgPort2, "urlImagenPe");
-        baseDatos.getOnlyImage(7, imgPort3, "urlImagenPe");
-        baseDatos.getOnlyImage(8, imgPort4, "urlImagenPe");
-        baseDatos.getOnlyImage(9, imgPort5, "urlImagenPe");
+        idAux = baseDatos.getOnlyImage(12, imgPort1, "urlImagenPe");
+        ids.add(idAux);
+        idAux = baseDatos.getOnlyImage(6, imgPort2, "urlImagenPe");
+        ids.add(idAux);
+        idAux = baseDatos.getOnlyImage(13, imgPort3, "urlImagenPe");
+        ids.add(idAux);
+        idAux = baseDatos.getOnlyImage(16, imgPort4, "urlImagenPe");
+        ids.add(idAux);
+        idAux = baseDatos.getOnlyImage(15, imgPort5, "urlImagenPe");
+        ids.add(idAux);
+
+        // Para la comprobación de los ids guardados
+        for (int i = 0; i < ids.size(); i++) {
+            System.out.println("El id es : " + ids.get(i));
+        }
 
         // Definimos las posiciones de todas las imágenes de la vista principal
         translateAnimation(0.5, img1, 0);
@@ -61,6 +83,40 @@ public class PrincipalViewController extends NavegacionVistas implements Initial
         baseDatos.getDatosImage(1, txtTitulo, txtDuracion);
     }
 
+    // MOSTRAR LAS PELÍCULAS PULSANDO EN BOTÓN
+    @FXML
+    void showPortada(ActionEvent event) {
+
+        // Para cada botón nos mandará a la vista del contenido de la imagen
+        if (event.getSource() == btnPortada1) {
+
+            main.cerrarPagina(event, btnPortada1);
+            mostrarContenidoViewUser(event, loaderContenido, ids.get(4), idUsuario);
+
+        } else if (event.getSource() == btnPortada2) {
+
+            main.cerrarPagina(event, btnPortada2);
+            mostrarContenidoViewUser(event, loaderContenido, ids.get(5), idUsuario);
+
+        } else if (event.getSource() == btnPortada3) {
+
+            main.cerrarPagina(event, btnPortada3);
+            mostrarContenidoViewUser(event, loaderContenido, ids.get(6), idUsuario);
+
+        } else if (event.getSource() == btnPortada4) {
+
+            main.cerrarPagina(event, btnPortada4);
+            mostrarContenidoViewUser(event, loaderContenido, ids.get(7), idUsuario);
+
+        } else if (event.getSource() == btnPortada5) {
+
+            main.cerrarPagina(event, btnPortada5);
+            mostrarContenidoViewUser(event, loaderContenido, ids.get(8), idUsuario);
+
+        }
+    }
+
+    // ACCIÓN DE LOS BOTONES PARA LA GALERÍA DE PELÍCULAS
     @FXML
     void next(ActionEvent event) {
 
@@ -87,7 +143,6 @@ public class PrincipalViewController extends NavegacionVistas implements Initial
             show = 0;
         }
     }
-
     @FXML
     void prev(ActionEvent event) {
 

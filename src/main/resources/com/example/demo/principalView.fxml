@@ -93,33 +93,44 @@
       <Button fx:id="btnPrueba" layoutX="1012.0" layoutY="331.0" mnemonicParsing="false" onAction="#mostrarVideo" opacity="0.0" prefHeight="56.0" prefWidth="127.0" text="Mirar video" />
       <HBox alignment="CENTER" layoutX="-2.0" layoutY="404.0" prefHeight="121.0" prefWidth="1174.0">
          <children>
-            <ImageView fx:id="imgPort1" fitHeight="113.0" fitWidth="195.0" pickOnBounds="true" preserveRatio="true">
+            <Button fx:id="btnPortada1" contentDisplay="CENTER" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#showPortada" prefHeight="113.0" prefWidth="200.0" style="-fx-background-color: null;" textAlignment="CENTER">
+               <graphic>
+                  <ImageView fx:id="imgPort1" fitHeight="113.0" fitWidth="196.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
                <HBox.margin>
                   <Insets right="20.0" />
                </HBox.margin>
-            </ImageView>
-            <ImageView fx:id="imgPort2" fitHeight="113.0" fitWidth="195.0" pickOnBounds="true" preserveRatio="true">
+            </Button>
+            <Button fx:id="btnPortada2" contentDisplay="CENTER" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#showPortada" prefHeight="113.0" prefWidth="200.0" style="-fx-background-color: null;" textAlignment="CENTER">
+               <graphic>
+                  <ImageView fx:id="imgPort2" fitHeight="115.0" fitWidth="196.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
                <HBox.margin>
                   <Insets right="20.0" />
                </HBox.margin>
-            </ImageView>
-            <ImageView fx:id="imgPort3" fitHeight="113.0" fitWidth="195.0" pickOnBounds="true" preserveRatio="true">
+            </Button>
+            <Button fx:id="btnPortada3" contentDisplay="CENTER" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#showPortada" prefHeight="113.0" prefWidth="200.0" style="-fx-background-color: null;" textAlignment="CENTER">
+               <graphic>
+                  <ImageView fx:id="imgPort3" fitHeight="116.0" fitWidth="196.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
                <HBox.margin>
                   <Insets right="20.0" />
                </HBox.margin>
-            </ImageView>
-            <ImageView fx:id="imgPort4" fitHeight="113.0" fitWidth="195.0" pickOnBounds="true" preserveRatio="true">
+            </Button>
+            <Button fx:id="btnPortada4" contentDisplay="CENTER" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#showPortada" prefHeight="113.0" prefWidth="200.0" style="-fx-background-color: null;" textAlignment="CENTER">
+               <graphic>
+                  <ImageView fx:id="imgPort4" fitHeight="115.0" fitWidth="196.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
                <HBox.margin>
                   <Insets right="20.0" />
                </HBox.margin>
-            </ImageView>
-            <ImageView fx:id="imgPort5" fitHeight="113.0" fitWidth="195.0" pickOnBounds="true" preserveRatio="true" />
+            </Button>
+            <Button fx:id="btnPortada5" contentDisplay="CENTER" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#showPortada" prefHeight="113.0" prefWidth="200.0" style="-fx-background-color: null;" textAlignment="CENTER">
+               <graphic>
+                  <ImageView fx:id="imgPort5" fitHeight="114.0" fitWidth="196.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
+            </Button>
          </children>
       </HBox>
-      <Button layoutX="58.0" layoutY="411.0" mnemonicParsing="false" opacity="0.0" prefHeight="106.0" prefWidth="194.0" text="Button" />
-      <Button layoutX="273.0" layoutY="406.0" mnemonicParsing="false" opacity="0.0" prefHeight="113.0" prefWidth="195.0" text="Button" />
-      <Button layoutX="490.0" layoutY="408.0" mnemonicParsing="false" opacity="0.0" prefHeight="113.0" prefWidth="190.0" text="Button" />
-      <Button layoutX="704.0" layoutY="409.0" mnemonicParsing="false" opacity="0.0" prefHeight="113.0" prefWidth="191.0" text="Button" />
-      <Button layoutX="920.0" layoutY="408.0" mnemonicParsing="false" opacity="0.0" prefHeight="113.0" prefWidth="189.0" text="Button" />
    </children>
 </AnchorPane>

@@ -22,13 +22,13 @@
       <MediaView fx:id="mediaView" fitHeight="500.0" fitWidth="1170.0" nodeOrientation="INHERIT" />
       <Label layoutX="51.0" layoutY="20.0" prefHeight="90.0" prefWidth="152.0" text="QR TV+" textFill="WHITE">
          <font>
-            <Font size="39.0" />
+            <Font size="26.0" />
          </font>
       </Label>
-      <Button fx:id="btnMenu" layoutX="51.0" layoutY="46.0" mnemonicParsing="false" opacity="0.0" prefHeight="38.0" prefWidth="130.0" text="Button" />
+      <Button fx:id="btnMostrarViewHome" layoutX="51.0" layoutY="46.0" mnemonicParsing="false" onAction="#showViewHome2" opacity="0.0" prefHeight="38.0" prefWidth="96.0" text="Button" />
       <HBox layoutX="6.0" layoutY="519.0" prefHeight="20.0" prefWidth="1173.0">
          <children>
-            <Slider prefHeight="13.0" prefWidth="1109.0" HBox.hgrow="ALWAYS">
+            <Slider fx:id="slider" onMousePressed="#sliderPressed" prefHeight="0.0" prefWidth="1173.0" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -38,23 +38,62 @@
             </Slider>
          </children>
       </HBox>
-      <HBox layoutX="37.0" layoutY="556.0" prefHeight="28.0" prefWidth="1099.0">
+      <HBox layoutX="37.0" layoutY="545.0" prefHeight="36.0" prefWidth="1099.0">
          <children>
-            <HBox prefHeight="28.0" prefWidth="238.0">
+            <HBox prefHeight="36.0" prefWidth="166.0">
                <children>
-                  <Button fx:id="btnPlay" mnemonicParsing="false" onMouseClicked="#playVideo" prefHeight="55.0" prefWidth="151.0" text="PLAY" />
-                  <Button fx:id="btnPause" mnemonicParsing="false" onMouseClicked="#pauseVideo" prefHeight="55.0" prefWidth="151.0" text="PAUSE" />
-                  <Button fx:id="btnReset" mnemonicParsing="false" onAction="#resetVideo" onMouseClicked="#resetVideo" prefHeight="63.0" prefWidth="151.0" text="RESET" />
+                  <Button fx:id="btnPlay" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#playVideo" prefHeight="34.0" prefWidth="47.0" style="-fx-background-color: null;" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="15.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@pics/icon/play.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <Button fx:id="btnPlay1" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#pauseVideo" prefHeight="34.0" prefWidth="51.0" style="-fx-background-color: null;" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@pics/icon/pause.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnPlay2" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#resetVideo" prefHeight="34.0" prefWidth="51.0" style="-fx-background-color: null;" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@pics/icon/reset.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
             </HBox>
-            <Label alignment="CENTER" prefHeight="29.0" prefWidth="658.0" text="Nombre de la película" textFill="WHITE">
+            <Label fx:id="txtTitulo" prefHeight="29.0" prefWidth="462.0" textFill="WHITE">
                <font>
-                  <Font size="24.0" />
+                  <Font size="20.0" />
                </font>
             </Label>
-            <Label fx:id="txtDuration" alignment="CENTER_RIGHT" prefHeight="29.0" prefWidth="205.0" text="Duration 00/00" textFill="WHITE">
+            <Label fx:id="txtValoracion" alignment="CENTER_RIGHT" prefHeight="29.0" prefWidth="137.0" textAlignment="RIGHT" textFill="WHITE">
                <font>
-                  <Font size="24.0" />
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="txtYear" alignment="CENTER_RIGHT" prefHeight="29.0" prefWidth="222.0" textAlignment="RIGHT" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="txtDuration" alignment="CENTER_RIGHT" prefHeight="29.0" prefWidth="137.0" textAlignment="RIGHT" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
                </font>
             </Label>
          </children>
@@ -71,19 +110,9 @@
                   <Insets right="10.0" />
                </HBox.margin>
             </ImageView>
-            <ImageView fitHeight="126.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true">
-               <HBox.margin>
-                  <Insets right="10.0" />
-               </HBox.margin>
-            </ImageView>
-            <ImageView fitHeight="126.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true">
-               <HBox.margin>
-                  <Insets right="10.0" />
-               </HBox.margin>
-            </ImageView>
-            <Label fx:id="txtSinopsis" alignment="TOP_LEFT" prefHeight="133.0" prefWidth="555.0" text="Sinopsis:" textFill="WHITE" HBox.hgrow="ALWAYS">
+            <Label fx:id="txtSinopsis" alignment="TOP_LEFT" prefHeight="137.0" prefWidth="827.0" textFill="WHITE" wrapText="true" HBox.hgrow="ALWAYS">
                <font>
-                  <Font size="24.0" />
+                  <Font size="18.0" />
                </font>
                <HBox.margin>
                   <Insets top="10.0" />
@@ -92,5 +121,6 @@
          </children>
       </HBox>
       <TextField fx:id="txtId" layoutX="1120.0" layoutY="63.0" opacity="0.0" prefHeight="26.0" prefWidth="32.0" />
+      <TextField fx:id="txtIdCont" disable="true" layoutX="970.0" layoutY="51.0" opacity="0.0" />
    </children>
 </AnchorPane>
