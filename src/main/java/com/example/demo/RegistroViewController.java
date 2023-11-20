@@ -31,6 +31,7 @@ public class RegistroViewController {
 
     @FXML
     void showViewPrincipal(ActionEvent event) {
+
         try {
 
             /* Inserto el nombre del usuario cuando se empieza la partida */

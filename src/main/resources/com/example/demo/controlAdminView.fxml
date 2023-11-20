@@ -7,6 +7,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -25,43 +26,406 @@
          </font>
       </Label>
       <TextField fx:id="txtId" layoutX="1110.0" layoutY="53.0" opacity="0.0" prefHeight="26.0" prefWidth="32.0" />
-      <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#ffffff52" height="252.0" layoutX="309.0" layoutY="239.0" opacity="0.5" stroke="#ffffff00" strokeType="INSIDE" width="557.0" />
-      <VBox layoutX="369.0" layoutY="287.0" prefHeight="124.0" prefWidth="433.0">
-         <children>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Es una prueba" textAlignment="CENTER" wrappingWidth="431.01198668748015">
-               <font>
-                  <Font size="26.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="30.0" />
-               </VBox.margin>
-            </Text>
-            <TextField fx:id="txtCode" alignment="CENTER" prefHeight="39.0" prefWidth="237.0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="22.0" />
-               </VBox.margin>
-            </TextField>
-         </children>
-      </VBox>
-      <Label fx:id="txtError" alignment="CENTER_RIGHT" layoutX="567.0" layoutY="528.0" prefHeight="38.0" prefWidth="298.0" textAlignment="RIGHT" textFill="#f2dd20">
+      <Label alignment="CENTER" layoutX="117.0" layoutY="64.0" prefHeight="47.0" prefWidth="152.0" text="Usuario" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Text fill="WHITE" layoutX="596.0" layoutY="447.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" textAlignment="CENTER" wrappingWidth="150.28615660935515">
+      <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#ffffff52" height="514.0" layoutX="30.0" layoutY="108.0" opacity="0.5" stroke="#ffffff00" strokeType="INSIDE" width="325.0" />
+      <VBox layoutX="41.0" layoutY="125.0" prefHeight="455.0" prefWidth="304.0">
+         <children>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="idUser" wrappingWidth="299.7315301445114">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
+            <TextField fx:id="txtIdU" alignment="CENTER_RIGHT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="23.0" prefWidth="371.0" promptText="idUser" style="-fx-background-color: none; -fx-border-radius: 15; -fx-border-color: white; -fx-text-fill: white;">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="User name" wrappingWidth="299.7315301445114">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </Text>
+            <TextField fx:id="txtNameU" alignment="CENTER_RIGHT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="23.0" prefWidth="371.0" promptText="name" style="-fx-background-color: none; -fx-border-radius: 15; -fx-border-color: white; -fx-text-fill: white;">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="User surname" wrappingWidth="299.7315301445114">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </Text>
+            <TextField fx:id="txtSurnameU" alignment="CENTER_RIGHT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="23.0" prefWidth="371.0" promptText="surname" style="-fx-background-color: none; -fx-border-radius: 15; -fx-border-color: white; -fx-text-fill: white;">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="User Birth" wrappingWidth="299.7315301445114">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </Text>
+            <TextField fx:id="txtBirthU" alignment="CENTER_RIGHT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="23.0" prefWidth="371.0" promptText="birth" style="-fx-background-color: none; -fx-border-radius: 15; -fx-border-color: white; -fx-text-fill: white;">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="User Gender" wrappingWidth="299.7315301445114">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </Text>
+            <TextField fx:id="txtGenderU" alignment="CENTER_RIGHT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="23.0" prefWidth="371.0" promptText="male / female" style="-fx-background-color: none; -fx-border-radius: 15; -fx-border-color: white; -fx-text-fill: white;">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="User Mail" wrappingWidth="299.7315301445114">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </Text>
+            <TextField fx:id="txtMailU" alignment="CENTER_RIGHT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="23.0" prefWidth="371.0" promptText="example@mail.ext" style="-fx-background-color: none; -fx-border-radius: 15; -fx-border-color: white; -fx-text-fill: white;">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="User password" wrappingWidth="299.7315301445114">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </Text>
+            <TextField fx:id="txtPasswordU" alignment="CENTER_RIGHT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="23.0" prefWidth="371.0" promptText="****************" style="-fx-background-color: none; -fx-border-radius: 15; -fx-border-color: white; -fx-text-fill: white;">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="isAdmin" wrappingWidth="299.7315301445114">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </Text>
+            <TextField fx:id="txtIdAdminU" alignment="CENTER_RIGHT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="23.0" prefWidth="371.0" promptText="code" style="-fx-background-color: none; -fx-border-radius: 15; -fx-border-color: white; -fx-text-fill: white;">
+               <VBox.margin>
+                  <Insets bottom="45.0" />
+               </VBox.margin>
+            </TextField>
+            <HBox prefHeight="36.0" prefWidth="166.0">
+               <children>
+                  <Button fx:id="btnAdd" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#add" prefHeight="34.0" prefWidth="47.0" style="-fx-background-color: null;" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@pics/icon/agregar.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnSearch" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#search" prefHeight="34.0" prefWidth="51.0" style="-fx-background-color: null;" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="26.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@pics/icon/buscador.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnDelete" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#delete" prefHeight="34.0" prefWidth="51.0" style="-fx-background-color: null;" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@pics/icon/borrar.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnModify" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#modify" prefHeight="34.0" prefWidth="51.0" style="-fx-background-color: null;" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="22.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@pics/icon/edicion.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+         </children>
+      </VBox>
+      <Label alignment="CENTER" layoutX="685.0" layoutY="63.0" prefHeight="47.0" prefWidth="152.0" text="Contenido" textFill="WHITE">
          <font>
-            <Font size="26.0" />
+            <Font size="20.0" />
          </font>
-      </Text>
-      <Button fx:id="btnLoginAdmin" layoutX="599.0" layoutY="409.0" mnemonicParsing="false" onAction="#showSesionAdmin" opacity="0.0" prefHeight="59.0" prefWidth="139.0" />
-      <Text fill="WHITE" layoutX="434.0" layoutY="448.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Not yet" textAlignment="CENTER" wrappingWidth="150.28615660935515">
+      </Label>
+      <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#ffffff52" height="514.0" layoutX="384.0" layoutY="107.0" opacity="0.5" stroke="#ffffff00" strokeType="INSIDE" width="755.0" />
+      <Label fx:id="txtMessage" alignment="CENTER_RIGHT" layoutX="836.0" layoutY="632.0" prefHeight="38.0" prefWidth="298.0" textAlignment="RIGHT" textFill="#f2dd20">
          <font>
-            <Font size="26.0" />
+            <Font size="20.0" />
          </font>
-      </Text>
-      <Button fx:id="btnLogin" layoutX="443.0" layoutY="409.0" mnemonicParsing="false" onAction="#showSesion" opacity="0.0" prefHeight="59.0" prefWidth="128.0" />
+      </Label>
+      <VBox layoutX="431.0" layoutY="151.0" prefHeight="464.0" prefWidth="304.0">
+         <children>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="idContenido" wrappingWidth="299.7315301445114">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
+            <TextField fx:id="txtIdC" alignment="CENTER_RIGHT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="23.0" prefWidth="371.0" promptText="idContenido" style="-fx-background-color: none; -fx-border-radius: 15; -fx-border-color: white; -fx-text-fill: white;">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Content name" wrappingWidth="299.7315301445114">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </Text>
+            <TextField fx:id="txtNameC" alignment="CENTER_RIGHT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="23.0" prefWidth="371.0" promptText="name" style="-fx-background-color: none; -fx-border-radius: 15; -fx-border-color: white; -fx-text-fill: white;">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Sinopsis" wrappingWidth="299.7315301445114">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </Text>
+            <TextField fx:id="txtSinopsisC" alignment="CENTER_RIGHT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="23.0" prefWidth="371.0" promptText="sinopsis" style="-fx-background-color: none; -fx-border-radius: 15; -fx-border-color: white; -fx-text-fill: white;">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Type" wrappingWidth="299.7315301445114">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </Text>
+            <TextField fx:id="txtTypeC" alignment="CENTER_RIGHT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="23.0" prefWidth="371.0" promptText="type" style="-fx-background-color: none; -fx-border-radius: 15; -fx-border-color: white; -fx-text-fill: white;">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender" wrappingWidth="299.7315301445114">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </Text>
+            <TextField fx:id="txtGenderC" alignment="CENTER_RIGHT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="23.0" prefWidth="371.0" promptText="gender" style="-fx-background-color: none; -fx-border-radius: 15; -fx-border-color: white; -fx-text-fill: white;">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Duration" wrappingWidth="299.7315301445114">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </Text>
+            <TextField fx:id="txtDurationC" alignment="CENTER_RIGHT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="23.0" prefWidth="371.0" promptText="000 min" style="-fx-background-color: none; -fx-border-radius: 15; -fx-border-color: white; -fx-text-fill: white;">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Valoration" wrappingWidth="299.7315301445114">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </Text>
+            <TextField fx:id="txtValorationC" alignment="CENTER_RIGHT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="23.0" prefWidth="371.0" promptText="0,0/10" style="-fx-background-color: none; -fx-border-radius: 15; -fx-border-color: white; -fx-text-fill: white;">
+               <VBox.margin>
+                  <Insets bottom="75.0" />
+               </VBox.margin>
+            </TextField>
+            <HBox prefHeight="36.0" prefWidth="166.0">
+               <children>
+                  <Button fx:id="btnAdd1" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#add" prefHeight="34.0" prefWidth="47.0" style="-fx-background-color: null;" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@pics/icon/agregar.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnSearch1" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#search" prefHeight="34.0" prefWidth="51.0" style="-fx-background-color: null;" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="26.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@pics/icon/buscador.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnDelete1" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#delete" prefHeight="34.0" prefWidth="51.0" style="-fx-background-color: null;" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@pics/icon/borrar.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnModify1" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#modify" prefHeight="34.0" prefWidth="51.0" style="-fx-background-color: null;" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="22.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@pics/icon/edicion.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox layoutX="790.0" layoutY="151.0" prefHeight="469.0" prefWidth="304.0">
+         <children>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Year" wrappingWidth="299.7315301445114">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
+            <TextField fx:id="txtYearC" alignment="CENTER_RIGHT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="23.0" prefWidth="371.0" promptText="2000" style="-fx-background-color: none; -fx-border-radius: 15; -fx-border-color: white; -fx-text-fill: white;">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="idActor1" wrappingWidth="299.7315301445114">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </Text>
+            <TextField fx:id="txtIdActor1" alignment="CENTER_RIGHT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="23.0" prefWidth="371.0" promptText="id" style="-fx-background-color: none; -fx-border-radius: 15; -fx-border-color: white; -fx-text-fill: white;">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="idActor2" wrappingWidth="299.7315301445114">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </Text>
+            <TextField fx:id="txtIdActor2" alignment="CENTER_RIGHT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="30.0" prefWidth="304.0" promptText="id2" style="-fx-background-color: none; -fx-border-radius: 15; -fx-border-color: white; -fx-text-fill: white;">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Director" wrappingWidth="299.7315301445114">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </Text>
+            <TextField fx:id="txtDirectorC" alignment="CENTER_RIGHT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="23.0" prefWidth="371.0" promptText="director" style="-fx-background-color: none; -fx-border-radius: 15; -fx-border-color: white; -fx-text-fill: white;">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="UrlImagen" wrappingWidth="299.7315301445114">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </Text>
+            <TextField fx:id="txtUrlImagenC" alignment="CENTER_RIGHT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="23.0" prefWidth="371.0" style="-fx-background-color: none; -fx-border-radius: 15; -fx-border-color: white; -fx-text-fill: white;">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="UrlVideo" wrappingWidth="299.7315301445114">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </Text>
+            <TextField fx:id="txtUrlVideoC" alignment="CENTER_RIGHT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="23.0" prefWidth="371.0" style="-fx-background-color: none; -fx-border-radius: 15; -fx-border-color: white; -fx-text-fill: white;">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="UrlImagenPe" wrappingWidth="299.7315301445114">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </Text>
+            <TextField fx:id="txtUrlImagenPeC" alignment="CENTER_RIGHT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="23.0" prefWidth="371.0" style="-fx-background-color: none; -fx-border-radius: 15; -fx-border-color: white; -fx-text-fill: white;">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </TextField>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

@@ -32,8 +32,10 @@ public class AjustesViewController extends NavegacionVistas {
     @FXML
     void updateDatos(ActionEvent event) {
 
+        // Comprobamos que los TextField tienen contenido
         if (!txtName.getText().isEmpty() && !txtSurname.getText().isEmpty() && !txtBirth.getText().isEmpty() && !txtGender.getText().isEmpty() && !txtMail.getText().isEmpty() && !txtPassword.getText().isEmpty()) {
 
+            // Cuando se hace la comprobación se actualizan los datos de la bd
             baseDatos.modificarUsuario(idUsuario, txtName, txtSurname, txtBirth, txtGender, txtMail, txtPassword, txtError);
 
         } else {

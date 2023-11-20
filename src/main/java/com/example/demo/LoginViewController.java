@@ -41,7 +41,7 @@ public class LoginViewController {
             /* Inserto el nombre del usuario cuando se empieza la partida */
             if (!titMail.getText().isEmpty() && !titPassword.getText().isEmpty()) {
 
-                encontrado = baseDatos.iniciarSesion(titMail, titPassword, txtError, idUser);
+                encontrado = baseDatos.iniciarSesion(titMail, titPassword, txtError);
 
                 switch (encontrado) {
                     case 1:

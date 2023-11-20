@@ -2,14 +2,8 @@ package com.example.demo;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
-
-import java.io.File;
 
 public class BuscadorViewController extends NavegacionVistas {
 
@@ -54,9 +48,9 @@ public class BuscadorViewController extends NavegacionVistas {
 
     @FXML
     void mostrarBusqueda(ActionEvent event) {
+
         // En caso de que el buscador encuentre algo método activado
         main.cerrarPagina(event, btnPortada1);
         mostrarContenidoViewUser(event, loaderContenido, idAux, idUsuario);
-        txtError.setText("Hola");
     }
 }

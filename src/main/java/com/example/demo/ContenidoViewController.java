@@ -80,12 +80,16 @@ public class ContenidoViewController extends NavegacionVistas {
     void playVideo(MouseEvent event) { mediaPlayer.play(); }
     @FXML
     void resetVideo(MouseEvent event) {
+
+        // Cargamos de nuevo el video para resetearlo
         media = new Media(file.toURI().toString());
         mediaPlayer = new MediaPlayer(media);
         mediaView.setMediaPlayer(mediaPlayer);
     }
     @FXML
     void sliderPressed(MouseEvent event) {
+
+        // Mostramos en el slider la duración del video que estamos cargando
         mediaPlayer.seek(Duration.seconds(slider.getValue()));
     }
 

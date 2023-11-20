@@ -20,6 +20,7 @@ public class HelloApplication extends Application {
         try {
 
             //Guardamos la dirección de la vista principal del main
+            //root = FXMLLoader.load(getClass().getResource("mainView.fxml"));
             root = FXMLLoader.load(getClass().getResource("mainView.fxml"));
 
             //Con esta línea se aplican los estilos que le damos a la interfaz

@@ -51,7 +51,7 @@ public class Bd {
 	//----------------------------------------------------------------------------------------------------------
 	// MÉTODOS USADOS PARA LA ADMINISTRACIÓN DEL USUARIO
 
-	public int iniciarSesion(TextField email, TextField password, Label txtError, int idUser) {
+	public int iniciarSesion(TextField email, TextField password, Label txtError) {
 
 		int encontrado = 0;
 
@@ -92,6 +92,46 @@ public class Bd {
 		} catch (SQLException ex) {
 			System.out.println("ERROR at login");
 			txtError.setText("User or password incorrect");
+		}
+
+		return encontrado;
+	}
+	public boolean buscarCont(TextField nombre, TextField txtUrlImagenC, TextField txtUrlVideoC, TextField txtUrlImagenPeC, Label txtError) {
+
+		boolean encontrado = false;
+
+		ResultSet result;
+		String sql;
+
+		String nombreAux = nombre.getText();
+		String imagenAux = txtUrlImagenC.getText();
+		String videoAux = txtUrlVideoC.getText();
+		String imagenPeAux = txtUrlImagenPeC.getText();
+
+		try {
+
+			conectar();
+			sentenciaSQL = conexion.createStatement();
+
+			// Sentencia para añadir usuarios a la tabla
+			sql = "SELECT nameCont, urlImagen, urlVideo, urlImagenPe FROM Contenido WHERE nameCont = '" + nombreAux + "' AND urlImagen = '" + imagenAux + "' AND urlVideo = '" + videoAux + "' AND urlImagenPe = '" + imagenPeAux + "'";
+			result = sentenciaSQL.executeQuery(sql);
+
+			// Siempre se ejecuta cada vez que encuentre un dato buscado en la secuencia
+			if(result.next()) {
+
+				// Mostramos el id del usuario para comprobar funcionamiento
+				System.out.println("Nombre encontrado : " + result.getString("nameCont"));
+
+				txtError.setText("Content exists");
+				encontrado = true;
+			}
+
+			desconectar();
+
+		} catch (SQLException ex) {
+			System.out.println("ERROR at buscar contenido");
+			txtError.setText("ERROR to find a content");
 		}
 
 		return encontrado;
@@ -162,7 +202,7 @@ public class Bd {
 			desconectar();
 
 		} catch (SQLException ex) {
-			System.out.println("ERROR at login");
+			System.out.println("ERROR al obtener el id del usuario");
 		}
 
 		return id;
@@ -201,6 +241,47 @@ public class Bd {
 			System.out.println("ERROR al guardar el usuario");
 		}
 	}
+	public void guardarContent(TextField txtNameC, TextField txtSinopsisC, TextField txtTypeC, TextField txtGenderC, TextField txtDurationC, TextField txtValorationC, TextField txtYearC, TextField txtIdActor1, TextField txtIdActor2, TextField txtDirectorC, TextField txtUrlImagenC, TextField txtUrlVideoC, TextField txtUrlImagenPeC, Label txtError) {
+
+		int result;
+		String sql;
+
+		String nombreAux = txtNameC.getText();
+		String sinopsisAux = txtSinopsisC.getText();
+		String typeAux = txtTypeC.getText();
+		String genderAux = txtGenderC.getText();
+		String durationAux = txtDurationC.getText();
+		String valorationAux = txtValorationC.getText();
+		String yearAux = txtYearC.getText();
+		String idA1Aux = txtIdActor1.getText();
+		String idA2Aux = txtIdActor2.getText();
+		String directorAux = txtDirectorC.getText();
+		String imageAux = txtUrlImagenC.getText();
+		String videoAux = txtUrlVideoC.getText();
+		String imagePeAux = txtUrlImagenPeC.getText();
+
+		try {
+
+			// ANTES TENEMOS QUE VERIFICAR SI EL USUARIO EXISTE
+
+			conectar();
+			sentenciaSQL = conexion.createStatement();
+
+			// Sentencia para añadir usuarios a la tabla
+			sql = "INSERT INTO Contenido (nameCont, sinopsisCont, tipoCont, generoCont, duracionCont, valoracionCont, yearCont, idActor1, idActor2, directorCont, urlImagen, urlVideo, urlImagenPe) VALUES ('" + nombreAux + "', '" + sinopsisAux + "', '" + typeAux + "', '" + genderAux + "', '" + durationAux + "', '" + valorationAux + "', '" + yearAux + "', '" + idA1Aux + "', '" + idA2Aux + "', '" + directorAux + "', '" + imageAux + "', '" + videoAux + "', '" + imagePeAux + "')";
+			result = sentenciaSQL.executeUpdate(sql);
+
+			// Se incrementa el valor de los personajes almacenados en el arrayList
+			System.out.println("Contenido añadido");
+			txtError.setText("Content add");
+
+			desconectar();
+
+		} catch (SQLException ex) {
+			System.out.println("ERROR al guardar un contenido");
+			txtError.setText("ERROR at add a content");
+		}
+	}
 
 	public void mostrarUsuario(int idUser, TextField userName, TextField userSurname, TextField userBirth, TextField userGender, TextField userMail, TextField userPassword) {
 
@@ -234,10 +315,49 @@ public class Bd {
 			System.out.println("ERROR al mostrar user");
 		}
 	}
+	public void mostrarContent(int idCont, TextField txtNameC, TextField txtSinopsisC, TextField txtTypeC, TextField txtGenderC, TextField txtDurationC, TextField txtValorationC, TextField txtYearC, TextField txtIdActor1, TextField txtIdActor2, TextField txtDirectorC, TextField txtUrlImagenC, TextField txtUrlVideoC, TextField txtUrlImagenPeC) {
+
+		ResultSet result;
+		String sql;
+
+		try {
+
+			conectar();
+			sentenciaSQL = conexion.createStatement();
+
+			// Sentencia para añadir usuarios a la tabla
+			sql = "SELECT * FROM Contenido where idContenido = '" + idCont + "'";
+			result = sentenciaSQL.executeQuery(sql);
+
+			// Siempre se ejecuta cada vez que encuentre un dato buscado en la secuencia
+			if(result.next()) {
+
+				// Insertamos en cada TextField los datos que sacamos de la BD
+				txtNameC.setText(result.getString("nameCont"));
+				txtSinopsisC.setText(result.getString("sinopsisCont"));
+				txtTypeC.setText(result.getString("tipoCont"));
+				txtGenderC.setText(result.getString("generoCont"));
+				txtDurationC.setText(result.getString("duracionCont"));
+				txtValorationC.setText(result.getString("valoracionCont"));
+				txtYearC.setText(result.getString("yearCont"));
+				txtIdActor1.setText(result.getString("idActor1"));
+				txtIdActor2.setText(result.getString("idActor2"));
+				txtDirectorC.setText(result.getString("directorCont"));
+				txtUrlImagenC.setText(result.getString("urlImagen"));
+				txtUrlVideoC.setText(result.getString("urlVideo"));
+				txtUrlImagenPeC.setText(result.getString("urlImagenPe"));
+			}
+
+			desconectar();
+
+		} catch (SQLException ex) {
+			System.out.println("ERROR al mostrar contenido");
+		}
+	}
 
 	public void eliminarUsuario(int idUser) {
 
-		ResultSet result;
+		int result;
 		String sql;
 
 		try {
@@ -248,12 +368,33 @@ public class Bd {
 			System.out.println("el user a eliminar es : " + idUser);
 			// Sentencia para añadir usuarios a la tabla
 			sql = "DELETE FROM Usuarios where idUsuarios = '" + idUser + "'";
-			result = sentenciaSQL.executeQuery(sql);
+			result = sentenciaSQL.executeUpdate(sql);
 
 			desconectar();
 
 		} catch (SQLException ex) {
 			System.out.println("ERROR al eliminar user");
+		}
+	}
+	public void eliminarContenido(int idCont) {
+
+		int result;
+		String sql;
+
+		try {
+
+			conectar();
+			sentenciaSQL = conexion.createStatement();
+
+			System.out.println("el contenido a eliminar es : " + idCont);
+			// Sentencia para añadir usuarios a la tabla
+			sql = "DELETE FROM Contenido where idContenido = '" + idCont + "'";
+			result = sentenciaSQL.executeUpdate(sql);
+
+			desconectar();
+
+		} catch (SQLException ex) {
+			System.out.println("ERROR al eliminar contenido");
 		}
 	}
 
@@ -287,6 +428,44 @@ public class Bd {
 
 		} catch (SQLException ex) {
 			System.out.println("ERROR al modificar el usuario");
+		}
+	}
+	public void modificarContent(int idCont, TextField txtNameC, TextField txtSinopsisC, TextField txtTypeC, TextField txtGenderC, TextField txtDurationC, TextField txtValorationC, TextField txtYearC, TextField txtIdActor1, TextField txtIdActor2, TextField txtDirectorC, TextField txtUrlImagenC, TextField txtUrlVideoC, TextField txtUrlImagenPeC, Label txtError) {
+
+		int result;
+		String sql;
+
+		String nombreAux = txtNameC.getText();
+		String sinopsisAux = txtSinopsisC.getText();
+		String typeAux = txtTypeC.getText();
+		String genderAux = txtGenderC.getText();
+		String durationAux = txtDurationC.getText();
+		String valorationAux = txtValorationC.getText();
+		String yearAux = txtYearC.getText();
+		String idA1Aux = txtIdActor1.getText();
+		String idA2Aux = txtIdActor2.getText();
+		String directorAux = txtDirectorC.getText();
+		String imageAux = txtUrlImagenC.getText();
+		String videoAux = txtUrlVideoC.getText();
+		String imagePeAux = txtUrlImagenPeC.getText();
+
+		try {
+
+			conectar();
+			sentenciaSQL = conexion.createStatement();
+
+			// Sentencia para añadir usuarios a la tabla
+			sql = "UPDATE Contenido SET nameCont = '" + nombreAux + "', sinopsisCont = '" + sinopsisAux + "', tipoCont = '" + typeAux + "', generoCont = '" + genderAux + "', duracionCont = '" + durationAux + "', valoracionCont = '" + valorationAux + "', yearCont = '" + yearAux + "', idActor1 = '" + idA1Aux + "', idActor2 = '" + idA2Aux + "', directorCont = '" + directorAux + "', urlImagen = '" + imageAux + "', urlVideo = '" + videoAux + "', urlImagenPe = '" + imagePeAux + "' WHERE idContenido = '" + idCont + "'";
+			result = sentenciaSQL.executeUpdate(sql);
+
+			// Se incrementa el valor de los personajes almacenados en el arrayList
+			System.out.println("Contenido modificado");
+			txtError.setText("Updated content");
+
+			desconectar();
+
+		} catch (SQLException ex) {
+			System.out.println("ERROR al modificar el contenido");
 		}
 	}
 
@@ -423,6 +602,7 @@ public class Bd {
 			conectar();
 			sentenciaSQL = conexion.createStatement();
 
+			// Sólo sirve en la vista buscador para obtener el id de la película y mostrarlo
 			sql = "SELECT idContenido FROM Contenido WHERE nameCont = '" + nombreAux + "'";
 			result = sentenciaSQL.executeQuery(sql);
 
@@ -441,6 +621,7 @@ public class Bd {
 		return idCont;
 	}
 
+	// DOS métodos aparte para series y películas sin género, otro mutuo que se usa en el filtrado
 	// Para mostrar las n PELÍCULAS
 	public ArrayList<Integer> getOnlyIdsPeliculas() {
 
@@ -455,9 +636,11 @@ public class Bd {
 			conectar();
 			sentenciaSQL = conexion.createStatement();
 
+			// Solo seleccionamos los id de las imágenes
 			sql = "SELECT idContenido FROM Contenido WHERE tipoCont = 'Pelicula' LIMIT 25";
 			result = sentenciaSQL.executeQuery(sql);
 
+			// Las insertamos dentro de un ArrayList para luego con otro método mostrar las imágenes
 			while(result.next()) {
 
 				idCont = result.getInt("idContenido");
@@ -473,38 +656,6 @@ public class Bd {
 
 		return listIds;
 	}
-	public ArrayList<Integer> getOnlyIdsGenero(String tipo, String genero) {
-
-		ResultSet result;
-		String sql;
-
-		ArrayList<Integer> listIds = new ArrayList<>();
-		int idCont = 0;
-
-		try {
-
-			conectar();
-			sentenciaSQL = conexion.createStatement();
-
-			sql = "SELECT idContenido FROM Contenido WHERE tipoCont = '" + tipo + "' AND generoCont = '" + genero + "' LIMIT 25";
-			result = sentenciaSQL.executeQuery(sql);
-
-			while(result.next()) {
-
-				idCont = result.getInt("idContenido");
-				//System.out.println("Dato ID obtenido : " + idCont);
-				listIds.add(idCont);
-			}
-
-			desconectar();
-
-		} catch (SQLException ex) {
-			System.out.println("ERROR al guardar los ids pelicula de los contenidos");
-		}
-
-		return listIds;
-	}
-
 	// Para mostrar las n SERIES
 	public ArrayList<Integer> getOnlyIdsSeries() {
 
@@ -537,7 +688,40 @@ public class Bd {
 
 		return listIds;
 	}
+	public ArrayList<Integer> getOnlyIdsGenero(String tipo, String genero) {
 
+		ResultSet result;
+		String sql;
+
+		ArrayList<Integer> listIds = new ArrayList<>();
+		int idCont = 0;
+
+		try {
+
+			conectar();
+			sentenciaSQL = conexion.createStatement();
+
+			// Filtramos por contenido y género
+			sql = "SELECT idContenido FROM Contenido WHERE tipoCont = '" + tipo + "' AND generoCont = '" + genero + "' LIMIT 25";
+			result = sentenciaSQL.executeQuery(sql);
+
+			while(result.next()) {
+
+				idCont = result.getInt("idContenido");
+				//System.out.println("Dato ID obtenido : " + idCont);
+				listIds.add(idCont);
+			}
+
+			desconectar();
+
+		} catch (SQLException ex) {
+			System.out.println("ERROR al guardar los ids pelicula de los contenidos");
+		}
+
+		return listIds;
+	}
+
+	// Con el id obtenemos datos priincipales para la vista del home
 	public void getDatosImage(int idContenido, Label txtTitulo, Label txtDuracion) {
 
 		ResultSet result;
@@ -564,7 +748,7 @@ public class Bd {
 			System.out.println("ERROR al mostrar datos de la imagen del home");
 		}
 	}
-	// Para la vista contenido individual
+	// Para la vista contenido individual donde se requieren todos los datos del contenido
 	public String getDatosImageCompl(int idContenido, Label txtTitulo, Label txtValoracion, Label txtYear, Label txtDuracion, Label txtSinopsis) {
 
 		ResultSet result;

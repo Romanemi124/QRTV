@@ -519,6 +519,11 @@ public class NavegacionVistas {
     public void mostrarCartelesButton(ActionEvent event, ArrayList<Integer> ids) {
 
         // Para cada botón nos mandará a la vista del contenido de la imagen
+        /*
+        En este if else lo que hacemos es habilitar o deshabilitar los botones que se encuentran dentro de la vista
+        que hace uso de este método, en cuanto detecte una imagen cargada ese botón estará habilitado, en caso contrario,
+        dicho botón se inhabilita y nos evitará problemas al querer pulsarlo y no detectar nada
+         */
         if (event.getSource() == btnPortada1) {
 
             main.cerrarPagina(event, btnPortada1);
