@@ -83,6 +83,7 @@ public class ControlAdminViewController extends NavegacionVistas {
 
                     baseDatos.guardarContent(txtNameC, txtSinopsisC, txtTypeC, txtGenderC, txtDurationC, txtValorationC, txtYearC, txtIdActor1, txtIdActor2, txtDirectorC, txtUrlImagenC, txtUrlVideoC, txtUrlImagenPeC, txtMessage);
 
+                    /*
                     txtIdC.setText("");
                     txtNameC.setText("");
                     txtSinopsisC.setText("");
@@ -97,6 +98,8 @@ public class ControlAdminViewController extends NavegacionVistas {
                     txtUrlImagenC.setText("");
                     txtUrlVideoC.setText("");
                     txtUrlImagenPeC.setText("");
+
+                     */
                 }
 
             } else {

@@ -9,6 +9,9 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 
+/**
+ * Clase que ejecuta el programa mostrando la vista principal
+ */
 public class HelloApplication extends Application {
 
     //Cargamos la vista principal del programa
