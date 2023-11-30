@@ -6,6 +6,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+/**
+ * Controlador para la vista de control del administrador.
+ */
 public class ControlAdminViewController extends NavegacionVistas {
 
     @FXML
@@ -25,9 +28,13 @@ public class ControlAdminViewController extends NavegacionVistas {
     @FXML
     private Label txtMessage;
 
-    Bd baseDatos = new Bd();
+    Bd baseDatos = Bd.getInstance();
 
-    // Recoge el id del usuario que inicia sesión en todas las vistas
+    /**
+     * Recoge el ID del usuario que inicia sesión en todas las vistas.
+     *
+     * @param id El ID del usuario.
+     */
     void mostrarId(int id) {
 
         txtId.setText(String.valueOf(id));
@@ -35,6 +42,11 @@ public class ControlAdminViewController extends NavegacionVistas {
         System.out.println("el valor recogido en vista admin es : " + idUsuario);
     }
 
+    /**
+     * Realiza las acciones correspondientes al botón presionado.
+     *
+     * @param event El evento de acción.
+     */
     @FXML
     void add(ActionEvent event) {
 
@@ -55,13 +67,7 @@ public class ControlAdminViewController extends NavegacionVistas {
                 } else {
                     baseDatos.guardarUsuario(txtNameU, txtSurnameU, txtBirthU, txtGenderU, txtMailU, txtPasswordU);
 
-                    txtIdU.setText("");
-                    txtNameU.setText("");
-                    txtSurnameU.setText("");
-                    txtBirthU.setText("");
-                    txtGenderU.setText("");
-                    txtMailU.setText("");
-                    txtPasswordU.setText("");
+                    vaciarUser();
                     txtMessage.setText("User add");
                 }
 
@@ -82,24 +88,6 @@ public class ControlAdminViewController extends NavegacionVistas {
                 if (!encontradoCont) {
 
                     baseDatos.guardarContent(txtNameC, txtSinopsisC, txtTypeC, txtGenderC, txtDurationC, txtValorationC, txtYearC, txtIdActor1, txtIdActor2, txtDirectorC, txtUrlImagenC, txtUrlVideoC, txtUrlImagenPeC, txtMessage);
-
-                    /*
-                    txtIdC.setText("");
-                    txtNameC.setText("");
-                    txtSinopsisC.setText("");
-                    txtTypeC.setText("");
-                    txtGenderC.setText("");
-                    txtDurationC.setText("");
-                    txtValorationC.setText("");
-                    txtYearC.setText("");
-                    txtIdActor1.setText("");
-                    txtIdActor2.setText("");
-                    txtDirectorC.setText("");
-                    txtUrlImagenC.setText("");
-                    txtUrlVideoC.setText("");
-                    txtUrlImagenPeC.setText("");
-
-                     */
                 }
 
             } else {
@@ -108,6 +96,11 @@ public class ControlAdminViewController extends NavegacionVistas {
         }
     }
 
+    /**
+     * Realiza las acciones correspondientes al botón presionado.
+     *
+     * @param event El evento de acción.
+     */
     @FXML
     void delete(ActionEvent event) {
 
@@ -120,13 +113,7 @@ public class ControlAdminViewController extends NavegacionVistas {
 
                 baseDatos.eliminarUsuario(idUser);
 
-                txtIdU.setText("");
-                txtNameU.setText("");
-                txtSurnameU.setText("");
-                txtBirthU.setText("");
-                txtGenderU.setText("");
-                txtMailU.setText("");
-                txtPasswordU.setText("");
+                vaciarUser();
                 txtMessage.setText("User delete");
 
             } else {
@@ -142,20 +129,7 @@ public class ControlAdminViewController extends NavegacionVistas {
 
                 baseDatos.eliminarContenido(idCont);
 
-                txtIdC.setText("");
-                txtNameC.setText("");
-                txtSinopsisC.setText("");
-                txtTypeC.setText("");
-                txtGenderC.setText("");
-                txtDurationC.setText("");
-                txtValorationC.setText("");
-                txtYearC.setText("");
-                txtIdActor1.setText("");
-                txtIdActor2.setText("");
-                txtDirectorC.setText("");
-                txtUrlImagenC.setText("");
-                txtUrlVideoC.setText("");
-                txtUrlImagenPeC.setText("");
+                vaciarCont();
                 txtMessage.setText("Content delete");
 
             } else {
@@ -164,6 +138,11 @@ public class ControlAdminViewController extends NavegacionVistas {
         }
     }
 
+    /**
+     * Realiza las acciones correspondientes al botón presionado.
+     *
+     * @param event El evento de acción.
+     */
     @FXML
     void modify(ActionEvent event) {
 
@@ -176,14 +155,7 @@ public class ControlAdminViewController extends NavegacionVistas {
             if (!txtNameU.getText().isEmpty() && !txtSurnameU.getText().isEmpty() && !txtBirthU.getText().isEmpty() && !txtGenderU.getText().isEmpty() && !txtMailU.getText().isEmpty() && !txtPasswordU.getText().isEmpty()) {
 
                 baseDatos.modificarUsuario(idUser, txtNameU, txtSurnameU, txtBirthU, txtGenderU, txtMailU, txtPasswordU, txtMessage);
-
-                txtIdU.setText("");
-                txtNameU.setText("");
-                txtSurnameU.setText("");
-                txtBirthU.setText("");
-                txtGenderU.setText("");
-                txtMailU.setText("");
-                txtPasswordU.setText("");
+                vaciarUser();
 
             } else {
                 txtMessage.setText("Faltan datos");
@@ -199,21 +171,7 @@ public class ControlAdminViewController extends NavegacionVistas {
             if (!txtNameC.getText().isEmpty() && !txtSinopsisC.getText().isEmpty() && !txtTypeC.getText().isEmpty() && !txtGenderC.getText().isEmpty() && !txtDurationC.getText().isEmpty() && !txtValorationC.getText().isEmpty() && !txtYearC.getText().isEmpty() && !txtIdActor1.getText().isEmpty() && !txtIdActor2.getText().isEmpty() && !txtDirectorC.getText().isEmpty() && !txtUrlImagenC.getText().isEmpty() && !txtUrlVideoC.getText().isEmpty() && !txtUrlImagenPeC.getText().isEmpty()) {
 
                 baseDatos.modificarContent(idCont, txtNameC, txtSinopsisC, txtTypeC, txtGenderC, txtDurationC, txtValorationC, txtYearC, txtIdActor1, txtIdActor2, txtDirectorC, txtUrlImagenC, txtUrlVideoC, txtUrlImagenPeC, txtMessage);
-
-                txtIdC.setText("");
-                txtNameC.setText("");
-                txtSinopsisC.setText("");
-                txtTypeC.setText("");
-                txtGenderC.setText("");
-                txtDurationC.setText("");
-                txtValorationC.setText("");
-                txtYearC.setText("");
-                txtIdActor1.setText("");
-                txtIdActor2.setText("");
-                txtDirectorC.setText("");
-                txtUrlImagenC.setText("");
-                txtUrlVideoC.setText("");
-                txtUrlImagenPeC.setText("");
+                vaciarCont();
 
             } else {
                 txtMessage.setText("Faltan datos");
@@ -221,6 +179,11 @@ public class ControlAdminViewController extends NavegacionVistas {
         }
     }
 
+    /**
+     * Realiza las acciones correspondientes al botón presionado.
+     *
+     * @param event El evento de acción.
+     */
     @FXML
     void search(ActionEvent event) {
 
@@ -228,14 +191,7 @@ public class ControlAdminViewController extends NavegacionVistas {
         if (event.getSource() == btnSearch) {
 
             int idUser = Integer.parseInt(txtIdU.getText());
-
-            txtNameU.setText("");
-            txtSurnameU.setText("");
-            txtBirthU.setText("");
-            txtGenderU.setText("");
-            txtMailU.setText("");
-            txtPasswordU.setText("");
-            txtMessage.setText("");
+            vaciarUser();
 
             // Muestra los datos del user sólo con el id
             if (!txtIdU.getText().isEmpty()) {
@@ -251,20 +207,7 @@ public class ControlAdminViewController extends NavegacionVistas {
 
             int idCont = Integer.parseInt(txtIdC.getText());
 
-            txtNameC.setText("");
-            txtSinopsisC.setText("");
-            txtTypeC.setText("");
-            txtGenderC.setText("");
-            txtDurationC.setText("");
-            txtValorationC.setText("");
-            txtYearC.setText("");
-            txtIdActor1.setText("");
-            txtIdActor2.setText("");
-            txtDirectorC.setText("");
-            txtUrlImagenC.setText("");
-            txtUrlVideoC.setText("");
-            txtUrlImagenPeC.setText("");
-            txtMessage.setText("");
+            vaciarCont();
 
             // Muestra los datos del user sólo con el id
             if (!txtIdC.getText().isEmpty()) {
@@ -275,6 +218,39 @@ public class ControlAdminViewController extends NavegacionVistas {
                 }
             }
         }
+    }
+
+    /**
+     * Realiza la acción de borrado de los datos del User
+     */
+    private void vaciarUser() {
+        txtIdU.setText("");
+        txtNameU.setText("");
+        txtSurnameU.setText("");
+        txtBirthU.setText("");
+        txtGenderU.setText("");
+        txtMailU.setText("");
+        txtPasswordU.setText("");
+    }
+
+    /**
+     * Realiza la acción de borrado de los datos del Contenido
+     */
+    private void vaciarCont() {
+        txtIdC.setText("");
+        txtNameC.setText("");
+        txtSinopsisC.setText("");
+        txtTypeC.setText("");
+        txtGenderC.setText("");
+        txtDurationC.setText("");
+        txtValorationC.setText("");
+        txtYearC.setText("");
+        txtIdActor1.setText("");
+        txtIdActor2.setText("");
+        txtDirectorC.setText("");
+        txtUrlImagenC.setText("");
+        txtUrlVideoC.setText("");
+        txtUrlImagenPeC.setText("");
     }
 }
 

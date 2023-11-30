@@ -10,21 +10,25 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+/**
+ * Controlador para la vista de inicio de sesión del administrador.
+ */
 public class LoginAdminViewController extends NavegacionVistas {
 
     @FXML
     private Button btnLogin, btnLoginAdmin;
 
     @FXML
-    private TextField txtCode;
+    private TextField txtCode, txtId;
 
     @FXML
     private Label txtError;
 
-    @FXML
-    private TextField txtId;
-
-    // Recoge el id del usuario que inicia sesión en todas las vistas
+    /**
+     * Recoge el ID del usuario que inicia sesión en todas las vistas.
+     *
+     * @param id El ID del usuario.
+     */
     void mostrarId(int id) {
 
         txtId.setText(String.valueOf(id));
@@ -32,7 +36,11 @@ public class LoginAdminViewController extends NavegacionVistas {
         System.out.println("el valor recogido es : " + idUsuario);
     }
 
-    // En caso de que no quiero iniciar sesión como admin podrá entrar como usuario normal
+    /**
+     * Muestra la vista principal como un usuario normal.
+     *
+     * @param event El evento de acción.
+     */
     @FXML
     void showSesion(ActionEvent event) {
         try {
@@ -43,6 +51,14 @@ public class LoginAdminViewController extends NavegacionVistas {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Muestra la vista principal del usuario.
+     *
+     * @param event      El evento de acción.
+     * @param fxmlLoader El FXMLLoader para cargar el archivo FXML.
+     * @param idUser     El ID del usuario.
+     */
     @FXML
     void mostrarHome(ActionEvent event, FXMLLoader fxmlLoader, int idUser) {
 
@@ -67,6 +83,11 @@ public class LoginAdminViewController extends NavegacionVistas {
 
     //------------------------------------------------------------------------
     // Si quiere entrar como admin
+    /**
+     * Intenta iniciar sesión como administrador.
+     *
+     * @param event El evento de acción.
+     */
     @FXML
     void showSesionAdmin(ActionEvent event) {
 
@@ -90,6 +111,14 @@ public class LoginAdminViewController extends NavegacionVistas {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Muestra la vista de control del administrador.
+     *
+     * @param event      El evento de acción.
+     * @param fxmlLoader El FXMLLoader para cargar el archivo FXML.
+     * @param idUser     El ID del usuario administrador.
+     */
     @FXML
     void mostrarControlAdmin(ActionEvent event, FXMLLoader fxmlLoader, int idUser) {
 
@@ -111,6 +140,5 @@ public class LoginAdminViewController extends NavegacionVistas {
             e.printStackTrace();
         }
     }
-
 }
 

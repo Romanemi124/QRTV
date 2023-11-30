@@ -5,6 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
+/**
+ * Controlador para la vista de búsqueda.
+ */
 public class BuscadorViewController extends NavegacionVistas {
 
     @FXML
@@ -15,7 +18,11 @@ public class BuscadorViewController extends NavegacionVistas {
 
     int idAux = 0;
 
-    // Recoge el id del usuario que inicia sesión en todas las vistas
+    /**
+     * Recoge el ID del usuario que ha iniciado sesión en todas las vistas.
+     *
+     * @param id El ID del usuario que ha iniciado sesión.
+     */
     void mostrarId(int id) {
 
         txtId.setText(String.valueOf(id));
@@ -23,6 +30,11 @@ public class BuscadorViewController extends NavegacionVistas {
         //System.out.println("el valor recogido es : " + idUsuario);
     }
 
+    /**
+     * Realiza la búsqueda de contenido al hacer clic en el botón de búsqueda.
+     *
+     * @param event El evento de acción.
+     */
     @FXML
     void buscar(ActionEvent event) {
 
@@ -46,6 +58,11 @@ public class BuscadorViewController extends NavegacionVistas {
         }
     }
 
+    /**
+     * Muestra el resultado de la búsqueda al hacer clic en el botón de visualización.
+     *
+     * @param event El evento de acción.
+     */
     @FXML
     void mostrarBusqueda(ActionEvent event) {
 

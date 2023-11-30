@@ -10,9 +10,11 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import java.io.File;
 import javafx.util.Duration;
-
 import javafx.scene.control.Slider;
 
+/**
+ * Controlador para la vista de contenido, que reproduce videos y muestra información relacionada.
+ */
 public class ContenidoViewController extends NavegacionVistas {
 
     @FXML
@@ -34,20 +36,25 @@ public class ContenidoViewController extends NavegacionVistas {
     private Media media;
     private MediaPlayer mediaPlayer;
 
-    // Recoge el id del usuario que inicia sesión en todas las vistas
+    /**
+     * Muestra la información del contenido y reproduce el video al recibir el id del contenido y del usuario.
+     *
+     * @param idContAux El ID del contenido.
+     * @param id El ID del usuario.
+     */
     void mostrarId(int idContAux, int id) {
 
-        // Para el id del usuario
+        // Para el ID del usuario
         txtId.setText(String.valueOf(id));
         idUsuario = Integer.parseInt(txtId.getText());
-        System.out.println("El id del user en VistaContenido es : " + idUsuario);
+        //System.out.println("El id del user en VistaContenido es : " + idUsuario);
 
-        // Para el id del contenido
+        // Para el ID del contenido
         txtIdCont.setText(String.valueOf(idContAux));
         idCont = Integer.parseInt(txtIdCont.getText());
-        System.out.println("El id del contenido en VistaContenido es : " + idCont);
+        //System.out.println("El id del contenido en VistaContenido es : " + idCont);
 
-        // Sacamos la información de la base de datos
+        // Obtenemos la información de la base de datos
         urlVideo = baseDatos.getDatosImageCompl(idCont, txtTitulo, txtValoracion, txtYear, txtDuration, txtSinopsis);
 
         // Mostramos el video en la pantalla principal de la vista
@@ -73,11 +80,27 @@ public class ContenidoViewController extends NavegacionVistas {
         });
     }
 
-    // ACCIÓN DE LOS BOTONES PARA EL CONTENIDO
+    /**
+     * Pausa la reproducción del video al hacer clic en la pantalla.
+     *
+     * @param event El evento del mouse.
+     */
     @FXML
     void pauseVideo(MouseEvent event) { mediaPlayer.pause(); }
+
+    /**
+     * Inicia la reproducción del video al hacer clic en la pantalla.
+     *
+     * @param event El evento del mouse.
+     */
     @FXML
     void playVideo(MouseEvent event) { mediaPlayer.play(); }
+
+    /**
+     * Reinicia la reproducción del video al hacer clic en la pantalla.
+     *
+     * @param event El evento del mouse.
+     */
     @FXML
     void resetVideo(MouseEvent event) {
 
@@ -86,6 +109,12 @@ public class ContenidoViewController extends NavegacionVistas {
         mediaPlayer = new MediaPlayer(media);
         mediaView.setMediaPlayer(mediaPlayer);
     }
+
+    /**
+     * Controla la posición del slider al arrastrarlo.
+     *
+     * @param event El evento del mouse.
+     */
     @FXML
     void sliderPressed(MouseEvent event) {
 
@@ -94,7 +123,11 @@ public class ContenidoViewController extends NavegacionVistas {
     }
 
     //------------------------------------------------------------------------
-    // Accion button mostrar pantalla principal
+    /**
+     * Muestra la vista principal al hacer clic en el botón correspondiente.
+     *
+     * @param event El evento de acción.
+     */
     @FXML
     void showViewHome2(ActionEvent event) {
         try {

@@ -10,6 +10,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
+/**
+ * Clase controladora para la vista de inicio de sesión.
+ */
 public class LoginViewController {
 
     @FXML
@@ -21,16 +24,23 @@ public class LoginViewController {
     @FXML
     private Label txtError;
 
+    // ID de usuario
     int idUser = 0;
 
     // Clase para hacer uso de la base de datos
-    Bd baseDatos = new Bd();
-    HelloApplication main = new HelloApplication();
+    Bd baseDatos = Bd.getInstance();
+    HelloApplication main = HelloApplication.getInstance();
 
+    // Instancias de FXMLLoader para diferentes vistas
     FXMLLoader loaderPrincipal = new FXMLLoader(getClass().getResource("principalView.fxml"));
     FXMLLoader loaderRegistro = new FXMLLoader(getClass().getResource("registroView.fxml"));
     FXMLLoader loaderAdminLogin = new FXMLLoader(getClass().getResource("loginAdminView.fxml"));
 
+    /**
+     * Manejador de eventos para el botón que muestra la vista principal.
+     *
+     * @param event El evento de acción.
+     */
     @FXML
     void btnMostrarViewPrincipal2(ActionEvent event) {
 
@@ -38,7 +48,7 @@ public class LoginViewController {
 
         try {
 
-            /* Inserto el nombre del usuario cuando se empieza la partida */
+            // Inserto el nombre del usuario cuando se empieza la partida
             if (!titMail.getText().isEmpty() && !titPassword.getText().isEmpty()) {
 
                 encontrado = baseDatos.iniciarSesion(titMail, titPassword, txtError);
@@ -79,6 +89,13 @@ public class LoginViewController {
         }
     }
 
+    /**
+     * Método para mostrar la vista principal para un usuario.
+     *
+     * @param event      El evento de acción.
+     * @param fxmlLoader El FXMLLoader para cargar el archivo FXML.
+     * @param idUser     El ID del usuario.
+     */
     @FXML
     void mostrarPrincipalViewUser(ActionEvent event, FXMLLoader fxmlLoader, int idUser) {
 
@@ -101,6 +118,13 @@ public class LoginViewController {
         }
     }
 
+    /**
+     * Método para mostrar la vista de inicio de sesión del administrador.
+     *
+     * @param event      El evento de acción.
+     * @param fxmlLoader El FXMLLoader para cargar el archivo FXML.
+     * @param idUser     El ID del usuario administrador.
+     */
     @FXML
     void mostrarViewLoginAdmin(ActionEvent event, FXMLLoader fxmlLoader, int idUser) {
 
@@ -123,6 +147,11 @@ public class LoginViewController {
         }
     }
 
+    /**
+     * Manejador de eventos para el botón que muestra la vista de registro.
+     *
+     * @param event El evento de acción.
+     */
     @FXML
     void btnMostrarViewRegistro(ActionEvent event) {
         try {

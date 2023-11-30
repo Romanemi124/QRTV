@@ -6,6 +6,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+/**
+ * Controlador para la vista de ajustes de usuario.
+ */
 public class AjustesViewController extends NavegacionVistas {
 
     @FXML
@@ -17,8 +20,11 @@ public class AjustesViewController extends NavegacionVistas {
     @FXML
     private Button btnCerrarSesion;
 
-
-    // Recoge el id del usuario que inicia sesión en todas las vistas
+    /**
+     * Muestra el ID del usuario y carga los datos del usuario que ha iniciado sesión.
+     *
+     * @param id El ID del usuario.
+     */
     void mostrarId(int id) {
 
         txtId.setText(String.valueOf(id));
@@ -29,6 +35,11 @@ public class AjustesViewController extends NavegacionVistas {
         baseDatos.mostrarUsuario(idUsuario, txtName, txtSurname, txtBirth, txtGender, txtMail, txtPassword);
     }
 
+    /**
+     * Actualiza los datos del usuario en la base de datos.
+     *
+     * @param event El evento de acción.
+     */
     @FXML
     void updateDatos(ActionEvent event) {
 
@@ -43,6 +54,11 @@ public class AjustesViewController extends NavegacionVistas {
         }
     }
 
+    /**
+     * Cierra la sesión del usuario y redirige a la vista principal.
+     *
+     * @param event El evento de acción.
+     */
     @FXML
     void cerrarSesion(ActionEvent event) {
 

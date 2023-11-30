@@ -30,12 +30,12 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Button fx:id="btnMostrarViewHome" layoutX="284.0" layoutY="24.0" mnemonicParsing="false" onAction="#showViewHome" opacity="0.0" prefHeight="65.0" prefWidth="81.0" text="home" />
-      <Button fx:id="btnMostrarViewPeliculas" layoutX="375.0" layoutY="24.0" mnemonicParsing="false" onAction="#showViewPeliculas" opacity="0.0" prefHeight="65.0" prefWidth="90.0" text="peliculas" />
-      <Button fx:id="btnMostrarViewSeries" layoutX="477.0" layoutY="24.0" mnemonicParsing="false" onAction="#showViewSeries" opacity="0.0" prefHeight="65.0" prefWidth="81.0" text="series" />
-      <Button fx:id="btnMostrarViewBiblioteca" layoutX="569.0" layoutY="26.0" mnemonicParsing="false" onAction="#showViewBiblioteca" opacity="0.0" prefHeight="65.0" prefWidth="102.0" text="biblioteca" />
-      <Button fx:id="btnMostrarViewBuscador" layoutX="685.0" layoutY="24.0" mnemonicParsing="false" onAction="#showViewBuscador" opacity="0.0" prefHeight="65.0" prefWidth="100.0" text="buscador" />
-      <Button fx:id="btnMostrarViewAjustes" layoutX="786.0" layoutY="31.0" mnemonicParsing="false" onAction="#showViewAjustes" opacity="0.0" prefHeight="65.0" prefWidth="100.0" text="ajustes" />
+      <Button fx:id="btnMostrarViewHome" layoutX="284.0" layoutY="24.0" mnemonicParsing="false" onAction="#showViewMenu" opacity="0.0" prefHeight="65.0" prefWidth="81.0" text="home" />
+      <Button fx:id="btnMostrarViewPeliculas" layoutX="375.0" layoutY="24.0" mnemonicParsing="false" onAction="#showViewMenu" opacity="0.0" prefHeight="65.0" prefWidth="90.0" text="peliculas" />
+      <Button fx:id="btnMostrarViewSeries" layoutX="477.0" layoutY="24.0" mnemonicParsing="false" onAction="#showViewMenu" opacity="0.0" prefHeight="65.0" prefWidth="81.0" text="series" />
+      <Button fx:id="btnMostrarViewBiblioteca" layoutX="569.0" layoutY="26.0" mnemonicParsing="false" onAction="#showViewMenu" opacity="0.0" prefHeight="65.0" prefWidth="102.0" text="biblioteca" />
+      <Button fx:id="btnMostrarViewBuscador" layoutX="685.0" layoutY="24.0" mnemonicParsing="false" onAction="#showViewMenu" opacity="0.0" prefHeight="65.0" prefWidth="100.0" text="buscador" />
+      <Button fx:id="btnMostrarViewAjustes" layoutX="786.0" layoutY="31.0" mnemonicParsing="false" onAction="#showViewMenu" opacity="0.0" prefHeight="65.0" prefWidth="100.0" text="ajustes" />
       <TextField fx:id="txtId" layoutX="1110.0" layoutY="53.0" opacity="0.0" prefHeight="26.0" prefWidth="32.0" />
       <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#ffffff52" height="479.0" layoutX="570.0" layoutY="160.0" opacity="0.5" stroke="#ffffff00" strokeType="INSIDE" width="480.0" />
       <Text fill="WHITE" layoutX="855.0" layoutY="596.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Update" textAlignment="RIGHT" wrappingWidth="139.5291375663864">

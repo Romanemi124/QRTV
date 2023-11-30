@@ -12,18 +12,47 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import java.util.ArrayList;
 
+/**
+ * Esta clase representa la gestión de la base de datos para la aplicación.
+ * Proporciona métodos para conectar con la base de datos, gestionar sesiones de usuario
+ * y realizar diversas operaciones relacionadas con usuarios y contenido.
+ *
+ * <p> La clase sigue el patrón Singleton para garantizar que se utilice una única instancia
+ * en toda la aplicación.
+ */
 public class Bd {
-	
+
+	// Variables para la conexión y declaración SQL
 	private static Connection conexion = null;
 	private static Statement sentenciaSQL = null;
-	
+
+	// Instancia única de la clase (patrón Singleton)
+	private static final Bd instance = new Bd();
+
+	/**
+	 * Constructor privado para evitar instanciación externa.
+	 */
 	public Bd() {
 		super();
 	}
 
+	/**
+	 * Método para obtener la instancia única de la clase.
+	 *
+	 * @return La única instancia de la clase Bd
+	 */
+	public static Bd getInstance() {
+		return instance;
+	}
+
 	//----------------------------------------------------------------------------------------------------------
 	// CONEXIÓN CON LA BASE DE DATOS
-	
+
+	/**
+	 * Establece una conexión con la base de datos.
+	 *
+	 * @throws SQLException si hay un error al conectar con la base de datos
+	 */
 	final void conectar() throws SQLException {
 		
         try {
@@ -35,9 +64,12 @@ public class Bd {
 			cn.printStackTrace();
 		}
 	}
-	
-	// Desconectarse
-	
+
+	/**
+	 * Desconecta de la base de datos.
+	 *
+	 * @throws SQLException si hay un error al desconectar de la base de datos
+	 */
 	final void desconectar() throws SQLException {
 		
 		try {
@@ -51,6 +83,14 @@ public class Bd {
 	//----------------------------------------------------------------------------------------------------------
 	// MÉTODOS USADOS PARA LA ADMINISTRACIÓN DEL USUARIO
 
+	/**
+	 * Intenta iniciar sesión de un usuario con el correo electrónico y la contraseña proporcionados.
+	 *
+	 * @param email    El correo electrónico del usuario
+	 * @param password La contraseña del usuario
+	 * @param txtError El etiqueta para mostrar mensajes de error
+	 * @return Un entero que representa el resultado del inicio de sesión
+	 */
 	public int iniciarSesion(TextField email, TextField password, Label txtError) {
 
 		int encontrado = 0;
@@ -96,6 +136,17 @@ public class Bd {
 
 		return encontrado;
 	}
+
+	/**
+	 * Busca un contenido en la base de datos.
+	 *
+	 * @param nombre      El nombre del contenido
+	 * @param txtUrlImagenC URL de la imagen del contenido
+	 * @param txtUrlVideoC URL del video del contenido
+	 * @param txtUrlImagenPeC URL de la imagen pequeña del contenido
+	 * @param txtError    El etiqueta para mostrar mensajes de error
+	 * @return `true` si se encuentra el contenido, `false` en caso contrario
+	 */
 	public boolean buscarCont(TextField nombre, TextField txtUrlImagenC, TextField txtUrlVideoC, TextField txtUrlImagenPeC, Label txtError) {
 
 		boolean encontrado = false;
@@ -137,7 +188,14 @@ public class Bd {
 		return encontrado;
 	}
 
-	// Acceder al panel de control del admin
+	/**
+	 * Intenta iniciar sesión como administrador con el código proporcionado.
+	 *
+	 * @param code      El código de administrador
+	 * @param txtError  La etiqueta para mostrar mensajes de error
+	 * @param idUser    El identificador del usuario
+	 * @return true si se inicia sesión como administrador exitosamente, false en caso contrario
+	 */
 	public boolean iniciarSesionAdmin(TextField code, Label txtError, int idUser) {
 
 		boolean encontrado = false;
@@ -174,6 +232,13 @@ public class Bd {
 		return encontrado;
 	}
 
+	/**
+	 * Obtiene el identificador de un usuario a partir del correo electrónico y la contraseña proporcionados.
+	 *
+	 * @param email     El correo electrónico del usuario
+	 * @param password  La contraseña del usuario
+	 * @return El identificador del usuario, o 0 si no se encuentra el usuario con las credenciales dadas.
+	 */
 	public int getIdUser(TextField email, TextField password) {
 
 		int id = 0;
@@ -208,7 +273,16 @@ public class Bd {
 		return id;
 	}
 
-	// Añadir un usuario nuevo al registrarse
+	/**
+	 * Guarda un nuevo usuario en la base de datos con la información proporcionada.
+	 *
+	 * @param nombre     El nombre del usuario.
+	 * @param apellidos  Los apellidos del usuario.
+	 * @param date       La fecha de nacimiento del usuario en formato string.
+	 * @param genero     El género del usuario.
+	 * @param email      El correo electrónico del usuario.
+	 * @param password   La contraseña del usuario.
+	 */
 	public void guardarUsuario(TextField nombre, TextField apellidos, TextField date, TextField genero, TextField email, TextField password) {
 
 		int result;
@@ -241,6 +315,25 @@ public class Bd {
 			System.out.println("ERROR al guardar el usuario");
 		}
 	}
+
+	/**
+	 * Guarda un nuevo contenido en la base de datos con la información proporcionada.
+	 *
+	 * @param txtNameC         El nombre del contenido.
+	 * @param txtSinopsisC     La sinopsis del contenido.
+	 * @param txtTypeC         El tipo del contenido.
+	 * @param txtGenderC       El género del contenido.
+	 * @param txtDurationC     La duración del contenido.
+	 * @param txtValorationC   La valoración del contenido.
+	 * @param txtYearC         El año de lanzamiento del contenido.
+	 * @param txtIdActor1      El ID del primer actor asociado al contenido.
+	 * @param txtIdActor2      El ID del segundo actor asociado al contenido.
+	 * @param txtDirectorC     El director del contenido.
+	 * @param txtUrlImagenC    La URL de la imagen del contenido.
+	 * @param txtUrlVideoC     La URL del video del contenido.
+	 * @param txtUrlImagenPeC  La URL de la imagen pequeña del contenido.
+	 * @param txtError         La etiqueta donde se mostrará un mensaje de error o confirmación.
+	 */
 	public void guardarContent(TextField txtNameC, TextField txtSinopsisC, TextField txtTypeC, TextField txtGenderC, TextField txtDurationC, TextField txtValorationC, TextField txtYearC, TextField txtIdActor1, TextField txtIdActor2, TextField txtDirectorC, TextField txtUrlImagenC, TextField txtUrlVideoC, TextField txtUrlImagenPeC, Label txtError) {
 
 		int result;
@@ -283,6 +376,17 @@ public class Bd {
 		}
 	}
 
+	/**
+	 * Muestra la información del usuario correspondiente al ID proporcionado en los campos de texto especificados.
+	 *
+	 * @param idUser         El ID del usuario cuya información se desea mostrar.
+	 * @param userName       El campo de texto para mostrar el nombre del usuario.
+	 * @param userSurname    El campo de texto para mostrar los apellidos del usuario.
+	 * @param userBirth      El campo de texto para mostrar la fecha de nacimiento del usuario.
+	 * @param userGender     El campo de texto para mostrar el género del usuario.
+	 * @param userMail       El campo de texto para mostrar el correo electrónico del usuario.
+	 * @param userPassword   El campo de texto para mostrar la contraseña del usuario.
+	 */
 	public void mostrarUsuario(int idUser, TextField userName, TextField userSurname, TextField userBirth, TextField userGender, TextField userMail, TextField userPassword) {
 
 		ResultSet result;
@@ -315,6 +419,25 @@ public class Bd {
 			System.out.println("ERROR al mostrar user");
 		}
 	}
+
+	/**
+	 * Muestra la información del contenido correspondiente al ID proporcionado en los campos de texto especificados.
+	 *
+	 * @param idCont           El ID del contenido cuya información se desea mostrar.
+	 * @param txtNameC         El campo de texto para mostrar el nombre del contenido.
+	 * @param txtSinopsisC     El campo de texto para mostrar la sinopsis del contenido.
+	 * @param txtTypeC         El campo de texto para mostrar el tipo del contenido.
+	 * @param txtGenderC       El campo de texto para mostrar el género del contenido.
+	 * @param txtDurationC     El campo de texto para mostrar la duración del contenido.
+	 * @param txtValorationC   El campo de texto para mostrar la valoración del contenido.
+	 * @param txtYearC         El campo de texto para mostrar el año del contenido.
+	 * @param txtIdActor1      El campo de texto para mostrar el ID del primer actor del contenido.
+	 * @param txtIdActor2      El campo de texto para mostrar el ID del segundo actor del contenido.
+	 * @param txtDirectorC     El campo de texto para mostrar el director del contenido.
+	 * @param txtUrlImagenC    El campo de texto para mostrar la URL de la imagen del contenido.
+	 * @param txtUrlVideoC     El campo de texto para mostrar la URL del video del contenido.
+	 * @param txtUrlImagenPeC  El campo de texto para mostrar la URL de la imagen pequeña del contenido.
+	 */
 	public void mostrarContent(int idCont, TextField txtNameC, TextField txtSinopsisC, TextField txtTypeC, TextField txtGenderC, TextField txtDurationC, TextField txtValorationC, TextField txtYearC, TextField txtIdActor1, TextField txtIdActor2, TextField txtDirectorC, TextField txtUrlImagenC, TextField txtUrlVideoC, TextField txtUrlImagenPeC) {
 
 		ResultSet result;
@@ -355,6 +478,11 @@ public class Bd {
 		}
 	}
 
+	/**
+	 * Elimina un usuario de la base de datos con el ID proporcionado.
+	 *
+	 * @param idUser El ID del usuario que se desea eliminar.
+	 */
 	public void eliminarUsuario(int idUser) {
 
 		int result;
@@ -376,6 +504,12 @@ public class Bd {
 			System.out.println("ERROR al eliminar user");
 		}
 	}
+
+	/**
+	 * Elimina un contenido de la base de datos con el ID proporcionado.
+	 *
+	 * @param idCont El ID del contenido que se desea eliminar.
+	 */
 	public void eliminarContenido(int idCont) {
 
 		int result;
@@ -398,6 +532,18 @@ public class Bd {
 		}
 	}
 
+	/**
+	 * Modifica un usuario en la base de datos con la información proporcionada.
+	 *
+	 * @param idUser   El ID del usuario que se desea modificar.
+	 * @param nombre   El nuevo nombre del usuario.
+	 * @param apellidos Los nuevos apellidos del usuario.
+	 * @param date     La nueva fecha de nacimiento del usuario.
+	 * @param genero   El nuevo género del usuario.
+	 * @param email    El nuevo correo electrónico del usuario.
+	 * @param password La nueva contraseña del usuario.
+	 * @param txtError Etiqueta donde se mostrará un mensaje en caso de error.
+	 */
 	public void modificarUsuario(int idUser, TextField nombre, TextField apellidos, TextField date, TextField genero, TextField email, TextField password, Label txtError) {
 
 		int result;
@@ -430,6 +576,26 @@ public class Bd {
 			System.out.println("ERROR al modificar el usuario");
 		}
 	}
+
+	/**
+	 * Modifica la información de un contenido en la base de datos con la información proporcionada.
+	 *
+	 * @param idCont       El ID del contenido que se desea modificar.
+	 * @param txtNameC     El nuevo nombre del contenido.
+	 * @param txtSinopsisC La nueva sinopsis del contenido.
+	 * @param txtTypeC     El nuevo tipo del contenido.
+	 * @param txtGenderC   El nuevo género del contenido.
+	 * @param txtDurationC La nueva duración del contenido.
+	 * @param txtValorationC La nueva valoración del contenido.
+	 * @param txtYearC     El nuevo año del contenido.
+	 * @param txtIdActor1  El nuevo ID del primer actor asociado al contenido.
+	 * @param txtIdActor2  El nuevo ID del segundo actor asociado al contenido.
+	 * @param txtDirectorC El nuevo director del contenido.
+	 * @param txtUrlImagenC La nueva URL de la imagen principal del contenido.
+	 * @param txtUrlVideoC La nueva URL del video asociado al contenido.
+	 * @param txtUrlImagenPeC La nueva URL de la imagen pequeña del contenido.
+	 * @param txtError     Etiqueta donde se mostrará un mensaje en caso de error.
+	 */
 	public void modificarContent(int idCont, TextField txtNameC, TextField txtSinopsisC, TextField txtTypeC, TextField txtGenderC, TextField txtDurationC, TextField txtValorationC, TextField txtYearC, TextField txtIdActor1, TextField txtIdActor2, TextField txtDirectorC, TextField txtUrlImagenC, TextField txtUrlVideoC, TextField txtUrlImagenPeC, Label txtError) {
 
 		int result;
@@ -472,7 +638,14 @@ public class Bd {
 	//----------------------------------------------------------------------------------------------------------
 	// MÉTODOS USADOS PARA EL HOME DE LA APLICACIÓN
 
-	// Sólo sirve para la vista principal debido a que le pasamos los ids
+	/**
+	 * Obtiene la imagen asociada a un contenido específico y la muestra en un ImageView.
+	 *
+	 * @param idContenido El ID del contenido del cual se desea obtener la imagen.
+	 * @param img         El ImageView donde se mostrará la imagen.
+	 * @param urlImagen   El tipo de imagen a obtener ("urlImagen" o "urlImagenPe").
+	 * @return El ID del contenido del cual se obtuvo la imagen.
+	 */
 	public int getOnlyImage(int idContenido, ImageView img, String urlImagen) {
 
 		File file;
@@ -521,6 +694,13 @@ public class Bd {
 
 		return idCont;
 	}
+
+	/**
+	 * Establece la imagen asociada a un contenido específico en un ImageView.
+	 *
+	 * @param idContenido El ID del contenido del cual se desea establecer la imagen.
+	 * @param img         El ImageView donde se mostrará la imagen.
+	 */
 	public void setOnlyImage(int idContenido, ImageView img) {
 
 		File file;
@@ -556,7 +736,11 @@ public class Bd {
 	//----------------------------------------------------------------------------------------------------------
 	// FILTRADO
 
-	// Para mostrar las n películas en general
+	/**
+	 * Obtiene una lista de IDs de contenidos.
+	 *
+	 * @return Una lista de IDs de contenidos.
+	 */
 	public ArrayList<Integer> getOnlyIds() {
 
 		ResultSet result;
@@ -588,6 +772,13 @@ public class Bd {
 
 		return listIds;
 	}
+
+	/**
+	 * Obtiene el ID de un contenido mediante su nombre.
+	 *
+	 * @param nombreCont El nombre del contenido para el cual se busca el ID.
+	 * @return El ID del contenido encontrado o 0 si no se encuentra.
+	 */
 	public int getOnlyIdBuscador(TextField nombreCont) {
 
 		ResultSet result;
@@ -621,8 +812,11 @@ public class Bd {
 		return idCont;
 	}
 
-	// DOS métodos aparte para series y películas sin género, otro mutuo que se usa en el filtrado
-	// Para mostrar las n PELÍCULAS
+	/**
+	 * Obtiene los IDs de las películas limitado a un máximo de 25.
+	 *
+	 * @return Un ArrayList que contiene los IDs de las películas obtenidos.
+	 */
 	public ArrayList<Integer> getOnlyIdsPeliculas() {
 
 		ResultSet result;
@@ -656,7 +850,12 @@ public class Bd {
 
 		return listIds;
 	}
-	// Para mostrar las n SERIES
+
+	/**
+	 * Obtiene los IDs de las series limitado a un máximo de 25.
+	 *
+	 * @return Un ArrayList que contiene los IDs de las series obtenidos.
+	 */
 	public ArrayList<Integer> getOnlyIdsSeries() {
 
 		ResultSet result;
@@ -688,6 +887,14 @@ public class Bd {
 
 		return listIds;
 	}
+
+	/**
+	 * Obtiene los IDs de contenidos filtrados por tipo y género, limitado a un máximo de 25.
+	 *
+	 * @param tipo   El tipo de contenido a filtrar ("Pelicula" o "Serie").
+	 * @param genero El género del contenido a filtrar.
+	 * @return Un ArrayList que contiene los IDs de los contenidos obtenidos según el tipo y género especificados.
+	 */
 	public ArrayList<Integer> getOnlyIdsGenero(String tipo, String genero) {
 
 		ResultSet result;
@@ -721,7 +928,13 @@ public class Bd {
 		return listIds;
 	}
 
-	// Con el id obtenemos datos priincipales para la vista del home
+	/**
+	 * Obtiene y muestra los datos de un contenido, como el título, año y duración.
+	 *
+	 * @param idContenido El ID del contenido del cual se obtendrán los datos.
+	 * @param txtTitulo   El objeto Label donde se mostrará el título del contenido.
+	 * @param txtDuracion El objeto Label donde se mostrará el año y la duración del contenido.
+	 */
 	public void getDatosImage(int idContenido, Label txtTitulo, Label txtDuracion) {
 
 		ResultSet result;
@@ -748,7 +961,18 @@ public class Bd {
 			System.out.println("ERROR al mostrar datos de la imagen del home");
 		}
 	}
-	// Para la vista contenido individual donde se requieren todos los datos del contenido
+
+	/**
+	 * Obtiene y muestra los datos completos de un contenido, como el título, valoración, año, duración y sinopsis.
+	 *
+	 * @param idContenido El ID del contenido del cual se obtendrán los datos.
+	 * @param txtTitulo   El objeto Label donde se mostrará el título del contenido.
+	 * @param txtValoracion El objeto Label donde se mostrará la valoración del contenido.
+	 * @param txtYear     El objeto Label donde se mostrará el año del contenido.
+	 * @param txtDuracion El objeto Label donde se mostrará la duración del contenido.
+	 * @param txtSinopsis El objeto Label donde se mostrará la sinopsis del contenido.
+	 * @return La URL del video asociado al contenido.
+	 */
 	public String getDatosImageCompl(int idContenido, Label txtTitulo, Label txtValoracion, Label txtYear, Label txtDuracion, Label txtSinopsis) {
 
 		ResultSet result;
@@ -789,5 +1013,4 @@ public class Bd {
 
 		return urlVideo;
 	}
-
 }

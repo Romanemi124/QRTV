@@ -13,11 +13,13 @@ import javafx.scene.control.Button;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * Controlador para la vista principal.
+ */
 public class PrincipalViewController extends NavegacionVistas implements Initializable {
 
-    int show = 0;
+    int show = 0, idAux = 0;
 
-    int idAux = 0;
     ArrayList<Integer> ids = new ArrayList<>();
 
     @FXML
@@ -29,7 +31,11 @@ public class PrincipalViewController extends NavegacionVistas implements Initial
     @FXML
     private Button btnPortada1, btnPortada2, btnPortada3, btnPortada4, btnPortada5;
 
-    // Recoge el id del usuario que inicia sesión en todas las vistas
+    /**
+     * Muestra el ID del usuario que inicia sesión en todas las vistas.
+     *
+     * @param id El ID del usuario.
+     */
     void mostrarId(int id) {
 
         txtId.setText(String.valueOf(id));
@@ -37,12 +43,25 @@ public class PrincipalViewController extends NavegacionVistas implements Initial
         System.out.println("el valor recogido es : " + idUsuario);
     }
 
+    /**
+     * Realiza una animación de desplazamiento de un nodo.
+     *
+     * @param duration La duración de la animación.
+     * @param node     El nodo a desplazar.
+     * @param width    La distancia de desplazamiento.
+     */
     public void translateAnimation(double duration, Node node, double width) {
         TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(duration), node);
         translateTransition.setByX(width);
         translateTransition.play();
     }
 
+    /**
+     * Inicializa el controlador después de que su raíz haya sido completamente procesada.
+     *
+     * @param location  La ubicación utilizada para resolver rutas relativas para el objeto raíz, o nula si no está disponible.
+     * @param resources Los recursos utilizados para localizar el objeto raíz, o nulo si no está disponible.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -83,10 +102,31 @@ public class PrincipalViewController extends NavegacionVistas implements Initial
         baseDatos.getDatosImage(1, txtTitulo, txtDuracion);
     }
 
-    // MOSTRAR LAS PELÍCULAS PULSANDO EN BOTÓN
+    /**
+     * Muestra la vista de contenido al hacer clic en los botones de portada.
+     *
+     * @param event El evento de acción.
+     */
     @FXML
     void showPortada(ActionEvent event) {
 
+        Button[] listButton = {btnPortada1, btnPortada2, btnPortada3, btnPortada4, btnPortada5};
+
+        // Recorremos 5 veces por las imágenes que queremos mostrar
+        for (int i = 0; i < 5; i++) {
+
+            // Para cada botón nos mandará a la vista del contenido de la imagen
+            if (event.getSource() == listButton[i]) {
+
+                main.cerrarPagina(event, listButton[i]);
+
+                // Debido a que las imágenes pequeñas empiezan desde la posición 4
+                mostrarContenidoViewUser(event, loaderContenido, ids.get(i + 4), idUsuario);
+
+            }
+        }
+
+        /*
         // Para cada botón nos mandará a la vista del contenido de la imagen
         if (event.getSource() == btnPortada1) {
 
@@ -114,9 +154,14 @@ public class PrincipalViewController extends NavegacionVistas implements Initial
             mostrarContenidoViewUser(event, loaderContenido, ids.get(8), idUsuario);
 
         }
+         */
     }
 
-    // ACCIÓN DE LOS BOTONES PARA LA GALERÍA DE PELÍCULAS
+    /**
+     * Muestra la siguiente imagen en la galería.
+     *
+     * @param event El evento de acción.
+     */
     @FXML
     void next(ActionEvent event) {
 
@@ -143,6 +188,12 @@ public class PrincipalViewController extends NavegacionVistas implements Initial
             show = 0;
         }
     }
+
+    /**
+     * Muestra la imagen anterior en la galería.
+     *
+     * @param event El evento de acción.
+     */
     @FXML
     void prev(ActionEvent event) {
 

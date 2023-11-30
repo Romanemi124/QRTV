@@ -11,15 +11,26 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
 import java.util.ArrayList;
 
+/**
+ * La clase NavegacionVistas representa el controlador de navegación para varias vistas
+ * en una aplicación multimedia.
+ *
+ * Maneja la navegación entre diferentes pantallas, la autenticación de usuarios y
+ * la visualización de imágenes y botones de contenido.
+ */
 public class NavegacionVistas {
 
     int idUsuario = 0;
+
+    // Recoge el id del usuario que inicia sesión en todas las vistas
+    @FXML
+    public TextField txtId;
+
     // Clase para hacer uso de la base de datos
-    Bd baseDatos = new Bd();
-    HelloApplication main = new HelloApplication();
+    Bd baseDatos = Bd.getInstance();
+    HelloApplication main = HelloApplication.getInstance();
 
     // Para las vistas biblioteca, peliculas, series
     ArrayList<Integer> ids = new ArrayList<>();
@@ -27,7 +38,11 @@ public class NavegacionVistas {
     //------------------------------------------------------------------------
 
     // PARA LAS BIBLIOTECAS
-    // Lista de todas las imágenes posibles
+
+    /**
+     * Lista de vistas de imágenes para mostrar imágenes de contenido
+     * en la biblioteca.
+     */
     @FXML
     ImageView imgPort1, imgPort2, imgPort3, imgPort4, imgPort5;
     @FXML
@@ -38,8 +53,12 @@ public class NavegacionVistas {
     ImageView imgPort16, imgPort17, imgPort18, imgPort19, imgPort20;
     @FXML
     ImageView imgPort21, imgPort22, imgPort23, imgPort24, imgPort25;
+    public ImageView[] listImage = new ImageView[25];
 
-    // Lista de los botones relación imagen
+    /**
+     * Lista de botones relacionados con las imágenes de contenido
+     * en la biblioteca.
+     */
     @FXML
     Button btnPortada1, btnPortada2, btnPortada3, btnPortada4, btnPortada5;
     @FXML
@@ -50,51 +69,152 @@ public class NavegacionVistas {
     Button btnPortada16, btnPortada17, btnPortada18, btnPortada19, btnPortada20;
     @FXML
     Button btnPortada21, btnPortada22, btnPortada23, btnPortada24, btnPortada25;
+    public Button[] listButton = new Button[25];
 
+    /**
+     * Cuadro de elección para filtrar contenido por género en la biblioteca.
+     */
     @FXML
     ChoiceBox<String> MenuFiltro;
-    String[] genero = {"Children", "Ciencia Ficcion", "Comedia", "Accion", "Terror", "Historica"};
+    String[] genero = {"Horror", "Action", "Science-Fiction", "Comedy", "Children", "History", "Drama", "Animated"};
 
+    /**
+     * Texto que indica el filtro seleccionado en la biblioteca.
+     */
     @FXML
     Text txtFiltro;
 
     //------------------------------------------------------------------------
 
-    // Botones de la barra de navegación //cambiar privbate
+    /**
+     * Botones de la barra de navegación para acceder a diferentes vistas.
+     */
     @FXML
     public Button btnPrueba, btnMostrarViewHome, btnMostrarViewPeliculas, btnMostrarViewSeries, btnMostrarViewBiblioteca, btnMostrarViewBuscador, btnMostrarViewAjustes;
+    public Button[] listButtonMenu = new Button[6];
 
-    // Recoge el id del usuario que inicia sesión en todas las vistas
-    @FXML
-    public TextField txtId;
     //------------------------------------------------------------------------
-    // Dirección de las diferentes vistas que se podrán usar
-
+    /**
+     * Cargadores de vistas para las diferentes pantallas que se pueden utilizar.
+     */
     FXMLLoader loaderMain = new FXMLLoader(getClass().getResource("mainView.fxml"));
-    FXMLLoader loaderRegistro = new FXMLLoader(getClass().getResource("registroView.fxml"));
     FXMLLoader loaderPrincipal = new FXMLLoader(getClass().getResource("principalView.fxml"));
     FXMLLoader loaderAjustes = new FXMLLoader(getClass().getResource("ajustesView.fxml"));
     FXMLLoader loaderBiblioteca = new FXMLLoader(getClass().getResource("bibliotecaView.fxml"));
     FXMLLoader loaderBuscador = new FXMLLoader(getClass().getResource("buscadorView.fxml"));
     FXMLLoader loaderContenido = new FXMLLoader(getClass().getResource("contenidoView.fxml"));
     FXMLLoader loaderPeliculas = new FXMLLoader(getClass().getResource("peliculasView.fxml"));
-    FXMLLoader loaderLogin = new FXMLLoader(getClass().getResource("loginView.fxml"));
     FXMLLoader loaderSeries = new FXMLLoader(getClass().getResource("seriesView.fxml"));
-
     FXMLLoader loaderAdminControl = new FXMLLoader(getClass().getResource("controlAdminView.fxml"));
+    public FXMLLoader[] listFxmlMenu = new FXMLLoader[6];
 
     //------------------------------------------------------------------------
-    // Accion button mostrar pantalla principal
+    /**
+     * Agrega los botones al array de botones para la biblioteca.
+     */
+    private void addArrayButton() {
+        listButton[0] = btnPortada1; listButton[1] = btnPortada2; listButton[2] = btnPortada3;
+        listButton[3] = btnPortada4; listButton[4] = btnPortada5; listButton[5] = btnPortada6;
+        listButton[6] = btnPortada7; listButton[7] = btnPortada8; listButton[8] = btnPortada9;
+        listButton[9] = btnPortada10; listButton[10] = btnPortada11; listButton[11] = btnPortada12;
+        listButton[12] = btnPortada13; listButton[13] = btnPortada14; listButton[14] = btnPortada15;
+        listButton[15] = btnPortada16; listButton[16] = btnPortada17; listButton[17] = btnPortada18;
+        listButton[18] = btnPortada19; listButton[19] = btnPortada20; listButton[20] = btnPortada21;
+        listButton[21] = btnPortada22; listButton[22] = btnPortada23; listButton[23] = btnPortada24;
+        listButton[24] = btnPortada25;
+    }
+
+    /**
+     * Agrega las imágenes al array de imágenes para la biblioteca.
+     */
+    private void addArrayImg() {
+        listImage[0] = imgPort1; listImage[1] = imgPort2; listImage[2] = imgPort3; listImage[3] = imgPort4;
+        listImage[4] = imgPort5; listImage[5] = imgPort6; listImage[6] = imgPort7; listImage[7] = imgPort8;
+        listImage[8] = imgPort9; listImage[9] = imgPort10; listImage[10] = imgPort11; listImage[11] = imgPort12;
+        listImage[12] = imgPort13; listImage[13] = imgPort14; listImage[14] = imgPort15; listImage[15] = imgPort16;
+        listImage[16] = imgPort17; listImage[17] = imgPort18; listImage[18] = imgPort19; listImage[19] = imgPort20;
+        listImage[20] = imgPort21;listImage[21] = imgPort22; listImage[22] = imgPort23; listImage[23] = imgPort24;
+        listImage[24] = imgPort25;
+    }
+
+    /**
+     * Agrega los botones y las vistas al array correspondiente del menú.
+     */
+    private void addArrayMenu() {
+
+        // Botones del menu
+        listButtonMenu[0] = btnMostrarViewHome; listButtonMenu[1] = btnMostrarViewPeliculas; listButtonMenu[2] = btnMostrarViewSeries;
+        listButtonMenu[3] = btnMostrarViewBiblioteca; listButtonMenu[4] = btnMostrarViewBuscador; listButtonMenu[5] = btnMostrarViewAjustes;
+
+        // Vistas del menu
+        listFxmlMenu[0] = loaderPrincipal; listFxmlMenu[1] = loaderPeliculas; listFxmlMenu[2] = loaderSeries;
+        listFxmlMenu[3] = loaderBiblioteca; listFxmlMenu[4] = loaderBuscador; listFxmlMenu[5] = loaderAjustes;
+    }
+
+    //------------------------------------------------------------------------
+
+    /**
+     * Muestra la vista correspondiente al botón del menú seleccionado.
+     *
+     * @param event Evento de acción que desencadena la función.
+     */
     @FXML
-    void showViewHome(ActionEvent event) {
+    void showViewMenu(ActionEvent event) {
+
+        // Cargamos los Arrays
+        addArrayMenu();
+
         try {
-            main.cerrarPagina(event, btnMostrarViewHome);
-            mostrarPrincipalViewUser(event, loaderPrincipal, idUsuario);
+
+            // Recorremos la lista de botones del array
+            for (int i = 0; i < listButtonMenu.length; i++) {
+
+                // Comprobamos caul es el botón que se ha presionado
+                if (event.getSource() == listButtonMenu[i]) {
+
+                    // Cerramos la vista actual para mostrar la siguiente
+                    main.cerrarPagina(event, listButtonMenu[i]);
+                    Parent root1 = listFxmlMenu[i].load();
+
+                    // Dependiendo del botón que sea se cargará su controlador para acceder al método de pasar ID
+                    if (listButtonMenu[i] == btnMostrarViewHome) {
+                        PrincipalViewController pview = loaderPrincipal.getController();
+                        pview.mostrarId(idUsuario);
+                    } else if (listButtonMenu[i] == btnMostrarViewPeliculas) {
+                        PeliculasViewController pview = loaderPeliculas.getController();
+                        pview.mostrarId(idUsuario);
+                    } else if (listButtonMenu[i] == btnMostrarViewSeries) {
+                        SeriesViewController pview = loaderSeries.getController();
+                        pview.mostrarId(idUsuario);
+                    } else if (listButtonMenu[i] == btnMostrarViewBiblioteca) {
+                        BibliotecaViewController pview = loaderBiblioteca.getController();
+                        pview.mostrarId(idUsuario);
+                    } else if (listButtonMenu[i] == btnMostrarViewBuscador) {
+                        BuscadorViewController pview = loaderBuscador.getController();
+                        pview.mostrarId(idUsuario);
+                    } else if (listButtonMenu[i] == btnMostrarViewAjustes) {
+                        AjustesViewController pview = loaderAjustes.getController();
+                        pview.mostrarId(idUsuario);
+                    }
+
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(root1));
+                    stage.show();
+                }
+            }
 
         } catch(Exception e) {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Muestra la vista principal del usuario con el ID proporcionado.
+     *
+     * @param event       Evento de acción que desencadena la función.
+     * @param fxmlLoader  Cargador de la vista FXML.
+     * @param idUser      ID del usuario para mostrar en la vista.
+     */
     @FXML
     void mostrarPrincipalViewUser(ActionEvent event, FXMLLoader fxmlLoader, int idUser) {
 
@@ -118,189 +238,16 @@ public class NavegacionVistas {
     }
 
     //------------------------------------------------------------------------
-    // Accion button mostrar pantalla peliculas
-    @FXML
-    void showViewPeliculas(ActionEvent event) {
-        try {
-            /* creamos objeto del Main para poder llamar al metodo start2 */
-            main.cerrarPagina(event, btnMostrarViewPeliculas);
-            mostrarPeliculasViewUser(event, loaderPeliculas, idUsuario);
 
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-    }
-    @FXML
-    void mostrarPeliculasViewUser(ActionEvent event, FXMLLoader fxmlLoader, int idUser) {
-
-        try {
-
-            Parent root1 = (Parent) fxmlLoader.load();
-            // Para pasar datos entre ventanas
-            PeliculasViewController pview = fxmlLoader.getController();
-            //idUser = pview.mostrarId(idUser);
-            pview.mostrarId(idUser);
-
-            System.out.println("Usuario en vista peliculas : " + idUser);
-
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root1));
-            stage.show();
-
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    //------------------------------------------------------------------------
-    // Accion button mostrar pantalla series
-    @FXML
-    void showViewSeries(ActionEvent event) {
-        try {
-            /* creamos objeto del Main para poder llamar al metodo start2 */
-            main.cerrarPagina(event, btnMostrarViewSeries);
-            mostrarSeriesViewUser(event, loaderSeries, idUsuario);
-
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-    }
-    @FXML
-    void mostrarSeriesViewUser(ActionEvent event, FXMLLoader fxmlLoader, int idUser) {
-
-        try {
-
-            Parent root1 = (Parent) fxmlLoader.load();
-            // Para pasar datos entre ventanas
-            SeriesViewController pview = fxmlLoader.getController();
-            //idUser = pview.mostrarId(idUser);
-            pview.mostrarId(idUser);
-
-            System.out.println("Usuario en vista series : " + idUser);
-
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root1));
-            stage.show();
-
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    //------------------------------------------------------------------------
-    // Accion button mostrar pantalla biblioteca
-    @FXML
-    void showViewBiblioteca(ActionEvent event) {
-        try {
-            /* creamos objeto del Main para poder llamar al metodo start2 */
-            main.cerrarPagina(event, btnMostrarViewBiblioteca);
-            mostrarBibliotecaViewUser(event, loaderBiblioteca, idUsuario);
-
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-    }
-    @FXML
-    void mostrarBibliotecaViewUser(ActionEvent event, FXMLLoader fxmlLoader, int idUser) {
-
-        try {
-
-            Parent root1 = (Parent) fxmlLoader.load();
-            // Para pasar datos entre ventanas
-            BibliotecaViewController pview = fxmlLoader.getController();
-            //idUser = pview.mostrarId(idUser);
-            pview.mostrarId(idUser);
-
-            System.out.println("Usuario en vista biblioteca : " + idUser);
-
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root1));
-            stage.show();
-
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    //------------------------------------------------------------------------
-    // Accion button mostrar pantalla biblioteca
-    @FXML
-    void showViewBuscador(ActionEvent event) {
-        try {
-            /* creamos objeto del Main para poder llamar al metodo start2 */
-            main.cerrarPagina(event, btnMostrarViewBuscador);
-            mostrarBuscadorViewUser(event, loaderBuscador, idUsuario);
-
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-    }
-    @FXML
-    void mostrarBuscadorViewUser(ActionEvent event, FXMLLoader fxmlLoader, int idUser) {
-
-        try {
-
-            Parent root1 = (Parent) fxmlLoader.load();
-            // Para pasar datos entre ventanas
-            BuscadorViewController pview = fxmlLoader.getController();
-            //idUser = pview.mostrarId(idUser);
-            pview.mostrarId(idUser);
-
-            System.out.println("Usuario en vista buscador : " + idUser);
-
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root1));
-            stage.show();
-
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    //------------------------------------------------------------------------
-    //Accion button mostrar pantalla principal
-    @FXML
-    void showViewAjustes(ActionEvent event) {
-
-        try {
-
-            /* creamos objeto del Main para poder llamar al metodo start2 */
-            main.cerrarPagina(event, btnMostrarViewAjustes);
-            mostrarAjustesViewUser(event, loaderAjustes, idUsuario);
-
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-    }
-    @FXML
-    void mostrarAjustesViewUser(ActionEvent event, FXMLLoader fxmlLoader, int idUser) {
-
-        try {
-
-            Parent root1 = (Parent) fxmlLoader.load();
-            // Para pasar datos entre ventanas
-            AjustesViewController pview = fxmlLoader.getController();
-            //idUser = pview.mostrarId(idUser);
-            pview.mostrarId(idUser);
-
-            System.out.println("Usuario en vista ajustes : " + idUser);
-
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root1));
-            stage.show();
-
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    //------------------------------------------------------------------------
-    // Mostrar Vista Contenido
-
+    /**
+     * Muestra la vista de contenido de video.
+     *
+     * @param event Evento de acción que desencadena la función.
+     */
     @FXML
     void mostrarVideo(ActionEvent event) {
         try {
-            /* creamos objeto del Main para poder llamar al metodo start2 */
+            // creamos objeto del Main para poder llamar al metodo start2
             main.cerrarPagina(event, btnPrueba);
             main.mostrarPagina(event, loaderContenido);
 
@@ -310,8 +257,15 @@ public class NavegacionVistas {
     }
 
     //------------------------------------------------------------------------
-    // Accion button mostrar contenido de cada imagen
 
+    /**
+     * Muestra la vista de contenido para un usuario específico.
+     *
+     * @param event       Evento de acción que desencadena la función.
+     * @param fxmlLoader  Cargador de la vista FXML.
+     * @param idCont      ID del contenido a mostrar.
+     * @param idUsuario   ID del usuario para pasar a la vista.
+     */
     @FXML
     void mostrarContenidoViewUser(ActionEvent event, FXMLLoader fxmlLoader, int idCont, int idUsuario) {
 
@@ -335,320 +289,50 @@ public class NavegacionVistas {
     }
 
     //------------------------------------------------------------------------
-    // Para las vistas donde se muestran todos los carteles
+
+    /**
+     * Muestra los carteles en la vista de la biblioteca.
+     *
+     * @param ids Lista de IDs de contenidos a mostrar.
+     */
     public void mostrarCarteles(ArrayList<Integer> ids) {
 
-        // Mostramos las imágenes gracias al array
-        if (ids.get(0) != 0) {
-            btnPortada1.setDisable(false);
-            baseDatos.setOnlyImage(ids.get(0), imgPort1);
-        } else {
-            btnPortada1.setDisable(true);
-            imgPort1.imageProperty().set(null);
-        }
-        if (ids.get(1) != 00) {
-            btnPortada2.setDisable(false);
-            baseDatos.setOnlyImage(ids.get(1), imgPort2);
-        } else {
-            btnPortada2.setDisable(true);
-            imgPort2.imageProperty().set(null);
-        }
-        if (ids.get(2) != 0) {
-            btnPortada3.setDisable(false);
-            baseDatos.setOnlyImage(ids.get(2), imgPort3);
-        } else {
-            btnPortada3.setDisable(true);
-            imgPort3.imageProperty().set(null);
-        }
-        if (ids.get(3) != 0) {
-            btnPortada4.setDisable(false);
-            baseDatos.setOnlyImage(ids.get(3), imgPort4);
-        } else {
-            btnPortada4.setDisable(true);
-            imgPort4.imageProperty().set(null);
-        }
-        if (ids.get(4) != 0) {
-            btnPortada5.setDisable(false);
-            baseDatos.setOnlyImage(ids.get(4), imgPort5);
-        } else {
-            btnPortada5.setDisable(true);
-            imgPort5.imageProperty().set(null);
-        }
-        if (ids.get(5) != 0) {
-            btnPortada6.setDisable(false);
-            baseDatos.setOnlyImage(ids.get(5), imgPort6);
-        } else {
-            btnPortada6.setDisable(true);
-            imgPort6.imageProperty().set(null);
-        }
-        if (ids.get(6) != 0) {
-            btnPortada7.setDisable(false);
-            baseDatos.setOnlyImage(ids.get(6), imgPort7);
-        } else {
-            btnPortada7.setDisable(true);
-            imgPort7.imageProperty().set(null);
-        }
-        if (ids.get(7) != 0) {
-            btnPortada8.setDisable(false);
-            baseDatos.setOnlyImage(ids.get(7), imgPort8);
-        } else {
-            btnPortada8.setDisable(true);
-            imgPort8.imageProperty().set(null);
-        }
-        if (ids.get(8) != 0) {
-            btnPortada9.setDisable(false);
-            baseDatos.setOnlyImage(ids.get(8), imgPort9);
-        } else {
-            btnPortada9.setDisable(true);
-            imgPort9.imageProperty().set(null);
-        }
-        if (ids.get(9) != 0) {
-            btnPortada10.setDisable(false);
-            baseDatos.setOnlyImage(ids.get(9), imgPort10);
-        } else {
-            btnPortada10.setDisable(true);
-            imgPort10.imageProperty().set(null);
-        }
-        if (ids.get(10) != 0) {
-            btnPortada11.setDisable(false);
-            baseDatos.setOnlyImage(ids.get(10), imgPort11);
-        } else {
-            btnPortada11.setDisable(true);
-            imgPort11.imageProperty().set(null);
-        }
-        if (ids.get(11) != 0) {
-            btnPortada12.setDisable(false);
-            baseDatos.setOnlyImage(ids.get(11), imgPort12);
-        } else {
-            btnPortada12.setDisable(true);
-            imgPort12.imageProperty().set(null);
-        }
-        if (ids.get(12) != 0) {
-            btnPortada13.setDisable(false);
-            baseDatos.setOnlyImage(ids.get(12), imgPort13);
-        } else {
-            btnPortada13.setDisable(true);
-            imgPort13.imageProperty().set(null);
-        }
-        if (ids.get(13) != 0) {
-            btnPortada14.setDisable(false);
-            baseDatos.setOnlyImage(ids.get(13), imgPort14);
-        } else {
-            btnPortada14.setDisable(true);
-            imgPort14.imageProperty().set(null);
-        }
-        if (ids.get(14) != 0) {
-            btnPortada15.setDisable(false);
-            baseDatos.setOnlyImage(ids.get(14), imgPort15);
-        } else {
-            btnPortada15.setDisable(true);
-            imgPort15.imageProperty().set(null);
-        }
-        if (ids.get(15) != 0) {
-            btnPortada16.setDisable(false);
-            baseDatos.setOnlyImage(ids.get(15), imgPort16);
-        } else {
-            btnPortada16.setDisable(true);
-            imgPort16.imageProperty().set(null);
-        }
-        if (ids.get(16) != 0) {
-            btnPortada17.setDisable(false);
-            baseDatos.setOnlyImage(ids.get(16), imgPort17);
-        } else {
-            btnPortada17.setDisable(true);
-            imgPort17.imageProperty().set(null);
-        }
-        if (ids.get(17) != 0) {
-            btnPortada18.setDisable(false);
-            baseDatos.setOnlyImage(ids.get(17), imgPort18);
-        } else {
-            btnPortada18.setDisable(true);
-            imgPort18.imageProperty().set(null);
-        }
-        if (ids.get(18) != 0) {
-            btnPortada19.setDisable(false);
-            baseDatos.setOnlyImage(ids.get(18), imgPort19);
-        } else {
-            btnPortada19.setDisable(true);
-            imgPort19.imageProperty().set(null);
-        }
-        if (ids.get(19) != 0) {
-            btnPortada20.setDisable(false);
-            baseDatos.setOnlyImage(ids.get(19), imgPort20);
-        } else {
-            btnPortada20.setDisable(true);
-            imgPort20.imageProperty().set(null);
-        }
-        if (ids.get(20) != 0) {
-            btnPortada21.setDisable(false);
-            baseDatos.setOnlyImage(ids.get(20), imgPort21);
-        } else {
-            btnPortada21.setDisable(true);
-            imgPort21.imageProperty().set(null);
-        }
-        if (ids.get(21) != 0) {
-            btnPortada22.setDisable(false);
-            baseDatos.setOnlyImage(ids.get(21), imgPort22);
-        } else {
-            btnPortada22.setDisable(true);
-            imgPort22.imageProperty().set(null);
-        }
-        if (ids.get(22) != 0) {
-            btnPortada23.setDisable(false);
-            baseDatos.setOnlyImage(ids.get(22), imgPort23);
-        } else {
-            btnPortada23.setDisable(true);
-            imgPort23.imageProperty().set(null);
-        }
-        if (ids.get(23) != 0) {
-            btnPortada24.setDisable(false);
-            baseDatos.setOnlyImage(ids.get(23), imgPort24);
-        } else {
-            btnPortada24.setDisable(true);
-            imgPort24.imageProperty().set(null);
-        }
-        if (ids.get(24) != 0) {
-            btnPortada25.setDisable(false);
-            baseDatos.setOnlyImage(ids.get(24), imgPort25);
-        } else {
-            btnPortada25.setDisable(true);
-            imgPort25.imageProperty().set(null);
+        addArrayButton();
+        addArrayImg();
+
+        // Habilitar o deshabilitar los botones que se encuentran dentro de la vista,
+        // en cuanto detecte una imagen cargada ese botón estará habilitado, en caso contrario,
+        // dicho botón se inhabilita y nos evitará problemas al querer pulsarlo y no detectar nada
+        for (int i = 0; i < ids.size(); i++) {
+
+            // Mostramos las imágenes gracias al array
+            if (ids.get(i) != 0) {
+                listButton[i].setDisable(false);
+                baseDatos.setOnlyImage(ids.get(i), listImage[i]);
+            } else {
+                listButton[i].setDisable(true);
+                listImage[i].imageProperty().set(null);
+            }
         }
     }
-    // Acciones de los botones
+
+    /**
+     * Muestra la vista de contenido asociada al botón de la biblioteca seleccionado.
+     *
+     * @param event      Evento de acción que desencadena la función.
+     * @param ids        Lista de IDs de contenidos asociados a los botones.
+     */
     public void mostrarCartelesButton(ActionEvent event, ArrayList<Integer> ids) {
 
+        addArrayButton();
+
         // Para cada botón nos mandará a la vista del contenido de la imagen
-        /*
-        En este if else lo que hacemos es habilitar o deshabilitar los botones que se encuentran dentro de la vista
-        que hace uso de este método, en cuanto detecte una imagen cargada ese botón estará habilitado, en caso contrario,
-        dicho botón se inhabilita y nos evitará problemas al querer pulsarlo y no detectar nada
-         */
-        if (event.getSource() == btnPortada1) {
+        for (int i = 0; i < ids.size(); i++) {
 
-            main.cerrarPagina(event, btnPortada1);
-            mostrarContenidoViewUser(event, loaderContenido, ids.get(0), idUsuario);
-
-        } else if (event.getSource() == btnPortada2) {
-
-            main.cerrarPagina(event, btnPortada2);
-            mostrarContenidoViewUser(event, loaderContenido, ids.get(1), idUsuario);
-
-        } else if (event.getSource() == btnPortada3) {
-
-            main.cerrarPagina(event, btnPortada3);
-            mostrarContenidoViewUser(event, loaderContenido, ids.get(2), idUsuario);
-
-        } else if (event.getSource() == btnPortada4) {
-
-            main.cerrarPagina(event, btnPortada4);
-            mostrarContenidoViewUser(event, loaderContenido, ids.get(3), idUsuario);
-
-        } else if (event.getSource() == btnPortada5) {
-
-            main.cerrarPagina(event, btnPortada5);
-            mostrarContenidoViewUser(event, loaderContenido, ids.get(4), idUsuario);
-
-        } else if (event.getSource() == btnPortada6) {
-
-            main.cerrarPagina(event, btnPortada6);
-            mostrarContenidoViewUser(event, loaderContenido, ids.get(5), idUsuario);
-
-        } else if (event.getSource() == btnPortada7) {
-
-            main.cerrarPagina(event, btnPortada7);
-            mostrarContenidoViewUser(event, loaderContenido, ids.get(6), idUsuario);
-
-        } else if (event.getSource() == btnPortada8) {
-
-            main.cerrarPagina(event, btnPortada8);
-            mostrarContenidoViewUser(event, loaderContenido, ids.get(7), idUsuario);
-
-        } else if (event.getSource() == btnPortada9) {
-
-            main.cerrarPagina(event, btnPortada9);
-            mostrarContenidoViewUser(event, loaderContenido, ids.get(8), idUsuario);
-
-        } else if (event.getSource() == btnPortada10) {
-
-            main.cerrarPagina(event, btnPortada10);
-            mostrarContenidoViewUser(event, loaderContenido, ids.get(9), idUsuario);
-
-        } else if (event.getSource() == btnPortada11) {
-
-            main.cerrarPagina(event, btnPortada11);
-            mostrarContenidoViewUser(event, loaderContenido, ids.get(10), idUsuario);
-
-        } else if (event.getSource() == btnPortada12) {
-
-            main.cerrarPagina(event, btnPortada12);
-            mostrarContenidoViewUser(event, loaderContenido, ids.get(11), idUsuario);
-
-        } else if (event.getSource() == btnPortada13) {
-
-            main.cerrarPagina(event, btnPortada13);
-            mostrarContenidoViewUser(event, loaderContenido, ids.get(12), idUsuario);
-
-        } else if (event.getSource() == btnPortada14) {
-
-            main.cerrarPagina(event, btnPortada14);
-            mostrarContenidoViewUser(event, loaderContenido, ids.get(13), idUsuario);
-
-        } else if (event.getSource() == btnPortada15) {
-
-            main.cerrarPagina(event, btnPortada15);
-            mostrarContenidoViewUser(event, loaderContenido, ids.get(14), idUsuario);
-
-        } else if (event.getSource() == btnPortada16) {
-
-            main.cerrarPagina(event, btnPortada16);
-            mostrarContenidoViewUser(event, loaderContenido, ids.get(15), idUsuario);
-
-        } else if (event.getSource() == btnPortada17) {
-
-            main.cerrarPagina(event, btnPortada17);
-            mostrarContenidoViewUser(event, loaderContenido, ids.get(16), idUsuario);
-
-        } else if (event.getSource() == btnPortada18) {
-
-            main.cerrarPagina(event, btnPortada18);
-            mostrarContenidoViewUser(event, loaderContenido, ids.get(17), idUsuario);
-
-        } else if (event.getSource() == btnPortada19) {
-
-            main.cerrarPagina(event, btnPortada19);
-            mostrarContenidoViewUser(event, loaderContenido, ids.get(18), idUsuario);
-
-        } else if (event.getSource() == btnPortada20) {
-
-            main.cerrarPagina(event, btnPortada20);
-            mostrarContenidoViewUser(event, loaderContenido, ids.get(19), idUsuario);
-
-        } else if (event.getSource() == btnPortada21) {
-
-            main.cerrarPagina(event, btnPortada21);
-            mostrarContenidoViewUser(event, loaderContenido, ids.get(20), idUsuario);
-
-        } else if (event.getSource() == btnPortada22) {
-
-            main.cerrarPagina(event, btnPortada22);
-            mostrarContenidoViewUser(event, loaderContenido, ids.get(21), idUsuario);
-
-        } else if (event.getSource() == btnPortada23) {
-
-            main.cerrarPagina(event, btnPortada23);
-            mostrarContenidoViewUser(event, loaderContenido, ids.get(22), idUsuario);
-
-        } else if (event.getSource() == btnPortada24) {
-
-            main.cerrarPagina(event, btnPortada24);
-            mostrarContenidoViewUser(event, loaderContenido, ids.get(23), idUsuario);
-
-        } else if (event.getSource() == btnPortada25) {
-
-            main.cerrarPagina(event, btnPortada25);
-            mostrarContenidoViewUser(event, loaderContenido, ids.get(24), idUsuario);
-
+            if (event.getSource() == listButton[i]) {
+                main.cerrarPagina(event, listButton[i]);
+                mostrarContenidoViewUser(event, loaderContenido, ids.get(i), idUsuario);
+            }
         }
     }
 }

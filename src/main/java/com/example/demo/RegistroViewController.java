@@ -10,6 +10,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
+/**
+ * Clase controladora para la vista de registro de usuarios.
+ */
 public class RegistroViewController {
 
     @FXML
@@ -21,24 +24,32 @@ public class RegistroViewController {
     @FXML
     private Label txtError;
 
+    // ID de usuario
     int idUser = 0;
-    Bd baseDatos = new Bd();
-    HelloApplication main = new HelloApplication();
+
+    // Clase para hacer uso de la base de datos
+    Bd baseDatos = Bd.getInstance();
+    HelloApplication main = HelloApplication.getInstance();
 
     //Dirección de las diferentes vistas que se podrán usar
     FXMLLoader loaderLogin = new FXMLLoader(getClass().getResource("loginView.fxml"));
     FXMLLoader loaderPrincipal = new FXMLLoader(getClass().getResource("principalView.fxml"));
 
+    /**
+     * Manejador de eventos para el botón que muestra la vista principal.
+     *
+     * @param event El evento de acción.
+     */
     @FXML
     void showViewPrincipal(ActionEvent event) {
 
         try {
 
-            /* Inserto el nombre del usuario cuando se empieza la partida */
+            // Inserto el nombre del usuario cuando se empieza la partida
             if (!titNombre.getText().isEmpty() && !titUsername.getText().isEmpty() && !titDate.getText().isEmpty() && !titGender.getText().isEmpty() && !titMail.getText().isEmpty() && !titPassword.getText().isEmpty()) {
 
                 baseDatos.guardarUsuario(titNombre, titUsername, titDate, titGender, titMail, titPassword);
-                /* creamos objeto del Main para poder llamar al metodo start2 */
+                // Creamos un objeto de la clase HelloApplication para llamar al método cerrarPagina y mostrarPrincipalViewUser
                 main.cerrarPagina(event, btnMostrarViewPrincipal);
                 mostrarPrincipalViewUser(event, loaderPrincipal, idUser);
 
@@ -50,6 +61,14 @@ public class RegistroViewController {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Método para mostrar la vista principal para un usuario.
+     *
+     * @param event      El evento de acción.
+     * @param fxmlLoader El FXMLLoader para cargar el archivo FXML.
+     * @param idUser     El ID del usuario.
+     */
     @FXML
     void mostrarPrincipalViewUser(ActionEvent event, FXMLLoader fxmlLoader, int idUser) {
 
@@ -72,10 +91,15 @@ public class RegistroViewController {
         }
     }
 
+    /**
+     * Manejador de eventos para el botón que muestra la vista de inicio de sesión.
+     *
+     * @param event El evento de acción.
+     */
     @FXML
     void showViewLogin2(ActionEvent event) {
         try {
-            /* creamos objeto del Main para poder llamar al metodo start2 */
+            // creamos objeto del Main para poder llamar al metodo start2
             main.cerrarPagina(event, btnMostrarViewLogin2);
             main.mostrarPagina(event, loaderLogin);
 
