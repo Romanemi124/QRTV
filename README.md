@@ -33,7 +33,7 @@ Links para descarga (MAC)
 <img width="540" alt="Captura de pantalla 2023-12-04 a las 0 49 42" src="https://github.com/Romanemi124/QRTV/assets/102904774/82ebf21f-e3e8-4cf6-8d8b-d77f86c72c6a">
 
 6.  Ejecutamos el código del fichero para llenar la bd con los datos de los recursos descargados (MEGA)
-    - SQL :
+    - SQL : https://mega.nz/file/hvcF1Yxa#3_1sH7ICZTvD4BHa9YCop8PEQosFR6nNd0CthvGUCGY
   
 ## Funciones principales detalladas del programa :
 
