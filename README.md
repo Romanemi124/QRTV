@@ -65,6 +65,9 @@ Links para descarga (MAC)
 
 <img src="https://img.shields.io/badge/mac%20os-000000?style=for-the-badge&logo=apple&logoColor=white" />
 
-## 🖥 Vista general del programa
+## 🖥 Diagrama UML del programa : 
+
+![image](https://github.com/Romanemi124/QRTV/assets/102904774/812c2337-121f-45db-9aeb-4e602b62e3b2)
+
 
 
