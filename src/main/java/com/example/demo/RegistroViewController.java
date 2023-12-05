@@ -49,6 +49,7 @@ public class RegistroViewController {
             if (!titNombre.getText().isEmpty() && !titUsername.getText().isEmpty() && !titDate.getText().isEmpty() && !titGender.getText().isEmpty() && !titMail.getText().isEmpty() && !titPassword.getText().isEmpty()) {
 
                 baseDatos.guardarUsuario(titNombre, titUsername, titDate, titGender, titMail, titPassword);
+                idUser = baseDatos.getIdUser(titMail, titPassword);
                 // Creamos un objeto de la clase HelloApplication para llamar al método cerrarPagina y mostrarPrincipalViewUser
                 main.cerrarPagina(event, btnMostrarViewPrincipal);
                 mostrarPrincipalViewUser(event, loaderPrincipal, idUser);

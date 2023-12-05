@@ -76,7 +76,7 @@ public class NavegacionVistas {
      */
     @FXML
     ChoiceBox<String> MenuFiltro;
-    String[] genero = {"Horror", "Action", "Science-Fiction", "Comedy", "Children", "History", "Drama", "Animated"};
+    String[] genero = {"Horror", "Action", "Science Fiction", "Comedy", "Children", "Historic", "Drama", "Animated"};
 
     /**
      * Texto que indica el filtro seleccionado en la biblioteca.

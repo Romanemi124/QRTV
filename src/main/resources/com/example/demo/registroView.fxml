@@ -82,7 +82,7 @@
                   <Font size="28.0" />
                </font>
             </Text>
-            <TextField fx:id="titPassword" nodeOrientation="RIGHT_TO_LEFT" prefHeight="23.0" prefWidth="371.0" promptText="*************" style="-fx-background-color: none; -fx-border-radius: 15; -fx-border-color: white; -fx-text-fill: whte;">
+            <TextField fx:id="titPassword" nodeOrientation="RIGHT_TO_LEFT" prefHeight="23.0" prefWidth="371.0" promptText="*************" style="-fx-background-color: none; -fx-border-radius: 15; -fx-border-color: white; -fx-text-fill: white;">
                <VBox.margin>
                   <Insets bottom="15.0" top="10.0" />
                </VBox.margin>

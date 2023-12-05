@@ -23,7 +23,7 @@
          </font>
       </Label>
       <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#3c3e4052" height="63.0" layoutX="261.0" layoutY="26.0" stroke="#ffffff00" strokeType="INSIDE" width="642.0" />
-      <Label layoutX="298.0" layoutY="6.0" prefHeight="101.0" prefWidth="608.0" text="Home        Películas        Series        Biblioteca        Buscador        Ajustes" textFill="WHITE">
+      <Label layoutX="298.0" layoutY="6.0" prefHeight="101.0" prefWidth="608.0" text="Home         Movies           Shows           Library           Search           Settings" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
